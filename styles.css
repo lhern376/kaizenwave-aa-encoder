@@ -1,0 +1,147 @@
+/* Index */
+
+/* ---------------------------------------------- General Styles */
+
+/* --------------- Modal Styles (Menu and Form) */
+
+/* ---------------------------------------------- Header Styles */
+
+/* --------------- Menu Styles */
+
+/* --------------- Logo Styles */
+
+/* --------------- Close Button Styles */
+
+/* ---------------------------------------------- Main Styles */
+
+/* ---------------------------------------------- Footer Styles */
+
+/* ---------------------------------------------- Media Queries */
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+
+/* ---------------------------------------------- General Styles */
+
+:root {
+  --cmstl-bg-color: hsl(0, 0%, 0%); /* background color */
+
+  --cmstl-f-color: rgb(231, 233, 234); /* font color */
+  --cmstl-f-color-link-hover: rgb(230, 26, 46);
+
+  --cmstl-blur: blur(4px);
+
+  font-size: 10px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+* {
+  /* outline: 1px solid pink; */
+}
+
+html {
+  /* background-color: red; */
+}
+
+body {
+  /* temporary */
+  min-height: 500rem;
+  position: relative;
+
+  background-color: var(--cmstl-bg-color);
+  color: var(--cmstl-f-color);
+  font-size: 1.5rem;
+  line-height: 2rem;
+
+  /* normalize */
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.cmstl-global-wrapper {
+  /* provides global center */
+  margin-inline: auto;
+}
+
+.cmstl-section-wrapper {
+  /* - provides section padding */
+  /* - responsive width */
+  max-width: 153.6rem;
+  padding-inline: 11.5rem;
+}
+
+.cmstl-blur {
+  backdrop-filter: blur(0.4rem);
+}
+
+/* ---------------------------------------------- Header Styles */
+
+.cmstl-fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.cmstl-nav-wrapper {
+  padding-block: 3rem;
+}
+
+.cmstl-nav-wrapper nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --------------- Logo Styles */
+
+.cmstl-site-logo-wrapper {
+  /* backdrop filter */
+  backdrop-filter: var(--cmstl-blur);
+  padding: 0.9rem;
+  border-radius: 1.5rem;
+}
+
+.cmstl-site-logo-wrapper svg {
+  width: 2.7rem;
+  height: 4.5rem;
+}
+
+/* --------------- Menu Styles */
+
+.cmstl-responsive-menu ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  font-size: 2.2rem;
+
+  /* backdrop filter */
+  backdrop-filter: var(--cmstl-blur);
+  padding-block: 0.9rem;
+  border-radius: 0.9rem;
+}
+
+.cmstl-responsive-menu ul li {
+  padding-inline: 1.5rem;
+}
+
+.cmstl-responsive-menu ul li a:hover {
+  color: var(--cmstl-f-color-link-hover);
+}
+
+/* --------------- Close Button Styles */
