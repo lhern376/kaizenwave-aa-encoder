@@ -14,6 +14,8 @@
 
 /* ---------------------------------------------- Main Styles */
 
+/* --------------- Entry Point */
+
 /* ---------------------------------------------- Footer Styles */
 
 /* ---------------------------------------------- Media Queries */
@@ -74,7 +76,7 @@ ul {
 
 .cmstl-global-wrapper {
   /* provides global center */
-  margin-inline: auto;
+  /* margin-inline: auto; */
 }
 
 .cmstl-section-wrapper {
@@ -82,10 +84,29 @@ ul {
   /* - responsive width */
   max-width: 153.6rem;
   padding-inline: 11.5rem;
+  padding-block: 3.84rem;
+  margin-inline: auto;
 }
 
 .cmstl-blur {
   backdrop-filter: blur(0.4rem);
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
 }
 
 /* ---------------------------------------------- Header Styles */
@@ -98,7 +119,7 @@ ul {
 }
 
 .cmstl-nav-wrapper {
-  padding-block: 3rem;
+  /* padding-block: 3rem; */
 }
 
 .cmstl-nav-wrapper nav {
@@ -145,3 +166,44 @@ ul {
 }
 
 /* --------------- Close Button Styles */
+
+/* ---------------------------------------------- Main Styles */
+
+/* --------------- Entry Point */
+
+.background-image {
+  /* width: 100vw;
+  height: 100vh; */
+
+  position: absolute;
+  inset: 0;
+
+  z-index: -10;
+
+  background-image: url("media/digital-dark-4-unsplash.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  /* background-position: center; */
+  background-position: 50% 50%;
+}
+
+.entry-point {
+  height: 100vh;
+  display: flex;
+  align-items: end;
+}
+
+.entry-point h1 {
+  padding-bottom: 13.4rem;
+  font-size: 7.2rem;
+  font-weight: 600;
+  line-height: 6.8rem;
+  letter-spacing: -0.08rem;
+}
+
+.entry-point span {
+  display: block;
+  width: min-content;
+}
