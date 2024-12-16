@@ -49,6 +49,7 @@ body {
 
   to {
     transform: scale(100000%);
+    backdrop-filter: blur(16px);
   }
 }
 

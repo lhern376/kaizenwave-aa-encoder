@@ -43,7 +43,7 @@
 (function () {
   // Add event listener
   document.addEventListener("mousemove", parallax);
-  const elem = document.querySelector(".background-image");
+  const elem = document.querySelector(".cmstl-background-image");
   // Magic happens here
   function parallax(e) {
     let _w = window.innerWidth / 2;

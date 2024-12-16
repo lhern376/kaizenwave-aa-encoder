@@ -27,10 +27,12 @@
 :root {
   --cmstl-bg-color: hsl(0, 0%, 0%); /* background color */
 
-  --cmstl-f-color: rgb(231, 233, 234); /* font color */
+  /* --cmstl-f-color: rgb(231, 233, 234);  */
+  --cmstl-f-color: rgb(255, 255, 255); /* font color */
   --cmstl-f-color-link-hover: rgb(230, 26, 46);
 
   --cmstl-blur: blur(4px);
+  --cmstl-blur-lg: blur(16px);
 
   font-size: 10px;
   font-family: Arial, sans-serif;
@@ -89,7 +91,7 @@ ul {
 }
 
 .cmstl-blur {
-  backdrop-filter: blur(0.4rem);
+  backdrop-filter: var(--cmstl-blur);
 }
 
 .w-full {
@@ -107,6 +109,32 @@ h4,
 h5,
 h6 {
   margin: 0;
+}
+
+/* --------------- Modal Styles (Menu and Form) */
+
+.cmstl-modal-menu {
+  z-index: 1000;
+  position: fixed;
+  inset: 0;
+
+  backdrop-filter: var(--cmstl-blur-lg);
+}
+
+.cmstl-modal-close-btn {
+  display: flex;
+  justify-content: end;
+  cursor: pointer;
+}
+
+.cmstl-modal-menu-content div {
+  line-height: 5.85rem;
+  font-size: 3.6rem;
+  font-weight: 700;
+}
+
+.cmstl-modal-menu-content div a:hover {
+  color: var(--cmstl-f-color-link-hover);
 }
 
 /* ---------------------------------------------- Header Styles */
@@ -171,14 +199,14 @@ h6 {
 
 /* --------------- Entry Point */
 
-.background-image {
+.cmstl-background-image {
   /* width: 100vw;
   height: 100vh; */
 
   position: absolute;
   inset: 0;
 
-  z-index: -10;
+  z-index: -1000;
 
   background-image: url("media/digital-dark-4-unsplash.jpg");
   background-attachment: fixed;
@@ -189,13 +217,13 @@ h6 {
   background-position: 50% 50%;
 }
 
-.entry-point {
+.cmstl-entry-point {
   height: 100vh;
   display: flex;
   align-items: end;
 }
 
-.entry-point h1 {
+.cmstl-entry-point h1 {
   padding-bottom: 13.4rem;
   font-size: 7.2rem;
   font-weight: 600;
@@ -203,7 +231,7 @@ h6 {
   letter-spacing: -0.08rem;
 }
 
-.entry-point span {
+.cmstl-entry-point span {
   display: block;
   width: min-content;
 }
