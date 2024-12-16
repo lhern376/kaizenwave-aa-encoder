@@ -1,0 +1,73 @@
+:root {
+  font-size: 10px;
+}
+
+body {
+  min-height: 500rem;
+
+  background-color: pink;
+
+  position: relative;
+}
+
+.expand {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+}
+
+.expanding-elem {
+  z-index: 2;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: black;
+  border: 0;
+  cursor: pointer;
+  position: fixed;
+  right: 0;
+  bottom: 18px;
+  outline: none;
+  animation-duration: 3000ms;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.expanding-elem[data-open="true"] {
+  background-color: rgba(0, 0, 0, 0.8);
+  animation-name: scale;
+}
+
+.expanding-elem[data-open="false"] {
+  transition: background-color 250ms linear;
+}
+
+@keyframes scale {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(100000%);
+  }
+}
+
+.second {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-color: brown;
+}
+
+.unexpand {
+  animation-name: unscale;
+  animation-duration: 3000ms;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes unscale {
+  to {
+    transform: scale(0);
+  }
+}
