@@ -1,42 +1,8 @@
 /**
- * - Original (for 3 images)
  *
- * - candidate images:
+ * ---- Background-image movement ----
  *
- *      media/digital-dark-4-unsplash.jpg
- *
- */
-
-// candidates
-// media/digital-dark-4-unsplash.jpg
-
-// (function () {
-//   // Add event listener
-//   document.addEventListener("mousemove", parallax);
-//   const elem = document.querySelector(".background-image");
-//   // Magic happens here
-//   function parallax(e) {
-//     let _w = window.innerWidth / 2;
-//     let _h = window.innerHeight / 2;
-//     let _mouseX = e.clientX;
-//     let _mouseY = e.clientY;
-//     let _depth1 = `${50 - (_mouseX - _w) * 0.01}% ${
-//       50 - (_mouseY - _h) * 0.01
-//     }%`;
-//     let _depth2 = `${50 - (_mouseX - _w) * 0.02}% ${
-//       50 - (_mouseY - _h) * 0.02
-//     }%`;
-//     let _depth3 = `${50 - (_mouseX - _w) * 0.06}% ${
-//       50 - (_mouseY - _h) * 0.06
-//     }%`;
-//     let x = `${_depth3}, ${_depth2}, ${_depth1}`;
-//     console.log(x);
-//     elem.style.backgroundPosition = x;
-//   }
-// })();
-
-/**
- * - Single image, single value
+ * - single image, single value
  *
  */
 
@@ -59,3 +25,29 @@
     elem.style.backgroundPosition = x;
   }
 })();
+
+/**
+ *
+ * ---- Animate logo on scroll ----
+ *
+ * - animate logo at 5% of dom height (NOTE: adjust percent as the page grows in content)
+ *
+ */
+
+const logoText = document.querySelector(".cmstl-site-logo-text");
+const logo = document.querySelector(".cmstl-site-logo");
+
+window.addEventListener("scroll", () => {
+  let pixelsFromTop = window.scrollY;
+  let domHeight = document.body.offsetHeight;
+
+  // animate logo at 5% of dom height (NOTE: adjust percent as the page grows in content)
+
+  if (pixelsFromTop / domHeight >= 0.05) {
+    logoText.classList.add("cmstl-site-logo-text-shrink");
+    logo.classList.remove("cmstl-invisible");
+  } else {
+    logoText.classList.remove("cmstl-site-logo-text-shrink");
+    logo.classList.add("cmstl-invisible");
+  }
+});

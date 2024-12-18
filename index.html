@@ -10,31 +10,35 @@
   <body>
     <!-- Background Image -->
     <div class="cmstl-background-image"></div>
+    <div class="cmstl-background-noise"></div>
+    <input type="color" style="position: fixed; bottom: 50%; left: 0" />
     <!-- Background Image END -->
     <!-- Menu Modal -->
-    <div class="cmstl-modal-menu cmstl-section-wrapper">
-      <div class="cmstl-modal-close-btn">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="42"
-          height="42"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-xicon"
-        >
-          <path d="M18 6 6 18"></path>
-          <path d="m6 6 12 12"></path>
-        </svg>
-      </div>
-      <div class="cmstl-modal-menu-content">
-        <div><a href="">Inside encoder</a></div>
+    <div class="cmstl-modal-menu cmstl-hide">
+      <div class="cmstl-section-wrapper">
+        <div class="cmstl-modal-close-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="42"
+            height="42"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-xicon"
+          >
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </div>
+        <div class="cmstl-modal-menu-content">
+          <div><a href="">Inside encoder</a></div>
 
-        <div><a href="">Services</a></div>
-        <div><a href="">Say Hello</a></div>
+          <div><a href="">Services</a></div>
+          <div><a href="">Say Hello</a></div>
+        </div>
       </div>
     </div>
     <!-- Menu Modal END -->
@@ -43,28 +47,31 @@
         <header>
           <div class="cmstl-nav-wrapper">
             <nav>
+              <!-- Site Logo -->
               <div class="cmstl-site-logo-wrapper">
-                <svg
-                  viewBox="0 0 453 756"
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  xml:space="preserve"
-                  style="
-                    fill-rule: evenodd;
-                    clip-rule: evenodd;
-                    stroke-linejoin: round;
-                    stroke-miterlimit: 2;
-                  "
-                >
-                  <path
-                    d="M389.192,201.873l63.597,-0l0,540.489l-135.922,-0l0,-43.325l-1.699,-0c-16.99,22.937 -62.863,56.917 -125.727,56.917c-115.534,0 -189.441,-88.349 -189.441,-231.067c0,-142.717 73.907,-231.067 189.441,-231.067c62.864,0 108.737,33.981 125.727,56.918l1.699,-0l0,-148.865l-48.2,-0l0,-201.873l120.525,-0l0,201.873Zm-162.373,452.14c55.218,-0 87.5,-44.175 87.5,-129.126c-0,-84.951 -32.282,-129.125 -87.5,-129.125c-55.218,-0 -87.499,44.174 -87.499,129.125c-0,84.951 32.281,129.126 87.499,129.126Z"
-                    style="fill: #e61a2e"
-                  ></path>
-                </svg>
+                <div class="cmstl-site-logo cmstl-invisible"></div>
+                <div class="cmstl-site-logo-text">Kaizen Wave</div>
               </div>
+              <!-- Site Logo END -->
               <div class="cmstl-responsive-menu-wrapper">
-                <div class="cmstl-menu-toggle"></div>
+                <div class="cmstl-menu-toggle cmstl-hide">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-menu-icon"
+                  >
+                    <line x1="4" x2="20" y1="12" y2="12"></line>
+                    <line x1="4" x2="20" y1="6" y2="6"></line>
+                    <line x1="4" x2="20" y1="18" y2="18"></line>
+                  </svg>
+                </div>
                 <div class="cmstl-responsive-menu">
                   <ul>
                     <li><a href="">Inside encoder</a></li>
@@ -78,16 +85,92 @@
         </header>
       </div>
       <main>
-        <div class="cmstl-section-wrapper h-full">
+        <div class="cmstl-section-wrapper">
           <section>
-            <div class="cmstl-entry-point">
-              <h1>
-                <span>Turning Visions&nbsp;into Digital&nbsp;Reality</span>
+            <!-- Hero -->
+            <div class="cmstl-hero">
+              <h1 class="cmstl-fw-lg cmstl-fade-out">
+                <span
+                  >Elevating Business&nbsp;through
+                  The&nbsp;Power&nbsp;of&nbsp;Marketing</span
+                >
               </h1>
             </div>
           </section>
         </div>
-        <section></section>
+        <div class="cmstl-section-wrapper">
+          <section>
+            <!-- Section I (Hey there) -->
+            <div class="cmstl-hey-there">
+              <h1 class="cmstl-fw-xl">Hi there!</h1>
+              <h1 class="cmstl-fw-lg">We're Kaizen Wave.</h1>
+              <h1 class="cmstl-fw-lg">We do Marketing.</h1>
+              <h1 class="cmstl-fw-lg">Yes, anything you can think of !</h1>
+            </div>
+          </section>
+        </div>
+        <div class="cmstl-section-wrapper">
+          <section>
+            <!-- Section II (What we do) -->
+            <div class="cmstl-what-we-do">
+              <h1 class="cmstl-fw-xl">What We Do</h1>
+              <div class="cmstl-article-wrapper">
+                <div class="cmstl-content-wrapper">
+                  <h1 class="cmstl-fw-lg">Website Development</h1>
+                  <div class="cmstl-fw-normal">
+                    We design and build dynamic, user-friendly websites that
+                    help your business deliver a clear message and connect with
+                    your audience.
+                  </div>
+                </div>
+                <div class="cmstl-aside-wrapper"></div>
+              </div>
+              <div class="cmstl-article-wrapper">
+                <div class="cmstl-content-wrapper">
+                  <h1 class="cmstl-fw-lg">Branding</h1>
+                  <div class="cmstl-fw-normal">
+                    We create branding that cuts through the noise and
+                    transforms your story into your competitive advantage.
+                  </div>
+                </div>
+                <div class="cmstl-aside-wrapper"></div>
+              </div>
+              <div class="cmstl-article-wrapper">
+                <div class="cmstl-content-wrapper">
+                  <h1 class="cmstl-fw-lg">Social Media Management</h1>
+                  <div class="cmstl-fw-normal">
+                    From strategy to execution, we manage your social media so
+                    you can stay focused on building your business.
+                  </div>
+                </div>
+                <div class="cmstl-aside-wrapper"></div>
+              </div>
+              <div class="cmstl-article-wrapper">
+                <div class="cmstl-content-wrapper">
+                  <h1 class="cmstl-fw-lg">Content Creation</h1>
+                  <div class="cmstl-fw-normal">
+                    We craft eye-catching content that aligns with your brand
+                    identity and keeps your audience coming back for more.
+                  </div>
+                </div>
+                <div class="cmstl-aside-wrapper"></div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="cmstl-section-wrapper">
+          <section>
+            <!-- Section III (Motto) -->
+            <div class="cmstl-motto">
+              <div>
+                <h1 class="cmstl-fw-lg">
+                  We use cutting-edge tools, bold creativity, and
+                  <span>a relentless drive</span> to help your business grow.
+                </h1>
+              </div>
+            </div>
+          </section>
+        </div>
       </main>
       <div class="cmstl-section-wrapper">
         <footer></footer>

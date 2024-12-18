@@ -16,6 +16,9 @@ document.querySelector(".expanding-elem").addEventListener("click", (e) => {
 
   if (isActive === "true") {
     // e.target.classList.add(".unexpand");
-    e.target.dataset.open = "false";
+    // e.target.dataset.open = "false";
+    e.target.classList.add("reverse-animation");
   }
 });
+
+// checking amount scrolled from the top

@@ -14,7 +14,15 @@
 
 /* ---------------------------------------------- Main Styles */
 
-/* --------------- Entry Point */
+/* --------------- Hero */
+
+/* --------------- Hey There */
+
+/* --------------- What We Do */
+
+/* --------------- Motto */
+
+/* --------------- Say Hello */
 
 /* ---------------------------------------------- Footer Styles */
 
@@ -24,18 +32,27 @@
 
 /* ---------------------------------------------- General Styles */
 
+@import url("https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro");
+
 :root {
-  --cmstl-bg-color: hsl(0, 0%, 0%); /* background color */
+  /* --cmstl-bg-color: hsl(0, 0%, 0%); background color */
+  --cmstl-bg-color: rgb(13, 13, 13);
 
   /* --cmstl-f-color: rgb(231, 233, 234);  */
   --cmstl-f-color: rgb(255, 255, 255); /* font color */
-  --cmstl-f-color-link-hover: rgb(230, 26, 46);
+  /* --cmstl-f-color-link-hover: rgb(230, 26, 46); */
+  /* --cmstl-f-color-link-hover: rgb(0, 49, 127); */
+  --cmstl-f-color-link-hover: rgb(93, 155, 219);
 
   --cmstl-blur: blur(4px);
   --cmstl-blur-lg: blur(16px);
 
+  /* scrollbar */
+  --scroll-bar-thumb: rgb(62, 65, 68);
+  --scroll-bar-track: rgb(22, 24, 28);
+
   font-size: 10px;
-  font-family: Arial, sans-serif;
+  font-family: "Neue Haas Grotesk Display Pro", Arial, sans-serif;
   box-sizing: border-box;
 }
 
@@ -56,6 +73,8 @@ body {
   color: var(--cmstl-f-color);
   font-size: 1.5rem;
   line-height: 2rem;
+
+  scrollbar-color: var(--scroll-bar-thumb) var(--scroll-bar-track);
 
   /* normalize */
   margin: 0;
@@ -111,6 +130,68 @@ h6 {
   margin: 0;
 }
 
+.cmstl-hide {
+  display: none;
+}
+
+.cmstl-invisible {
+  visibility: hidden;
+  rotate: 3turn;
+}
+
+.cmstl-fw-xl {
+  color: var(--cmstl-f-color-link-hover);
+  font-size: 15.36rem;
+  font-weight: 600;
+  line-height: 12.3rem;
+  letter-spacing: -0.384rem;
+}
+
+.cmstl-fw-lg {
+  font-size: 7.2rem;
+  font-weight: 600;
+  line-height: 6.8rem;
+  letter-spacing: -0.1536rem;
+}
+
+.cmstl-fw-normal {
+  font-size: 1.92rem;
+  font-weight: 400;
+  line-height: 2.88rem;
+  /* letter-spacing: 0.0192rem; */
+  letter-spacing: 0.07rem;
+}
+
+.cmstl-fw-small {
+  color: var(--cmstl-f-color-link-hover);
+  font-size: 1.68rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  letter-spacing: 0.0192rem;
+}
+
+/* --------------- Animations */
+.cmstl-fade-out {
+  animation: fade-out linear forwards;
+  animation-timeline: view();
+  animation-range-start: 40rem;
+  animation-range-end: 70rem;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+}
+
 /* --------------- Modal Styles (Menu and Form) */
 
 .cmstl-modal-menu {
@@ -163,6 +244,8 @@ h6 {
   backdrop-filter: var(--cmstl-blur);
   padding: 0.9rem;
   border-radius: 1.5rem;
+
+  position: relative;
 }
 
 .cmstl-site-logo-wrapper svg {
@@ -170,7 +253,62 @@ h6 {
   height: 4.5rem;
 }
 
+.cmstl-site-logo {
+  /* width: 4.5rem; */
+  /* height: 4.5rem; */
+  width: 6.5rem;
+  height: 6.5rem;
+  background-image: url("media/Logo_KaizenWave_Imagotipo_FullColor (1).png");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  transition-property: visibility, rotate;
+  transition-duration: 50ms;
+  transition-timing-function: ease-in;
+}
+
+.cmstl-site-logo-text {
+  /* width: calc(4.5rem * 2.5); */
+  /* height: 4.5rem; */
+  /* width: calc(6.5rem * 2.5);
+  height: 6.5rem;
+  background-image: url("media/Logo_KaizenWave_IdentidadLateral_FullColor (1).png");
+  background-size: contain;
+  background-repeat: no-repeat; */
+
+  line-height: 5.85rem;
+  font-size: 3.6rem;
+  font-weight: 700;
+
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: max-content;
+
+  transform: translate(10%, -50%);
+  transform-origin: left;
+
+  transition-property: scale, opacity;
+  transition-duration: 100ms;
+  transition-timing-function: ease-in-out;
+}
+
+.cmstl-site-logo-text-shrink {
+  scale: 0.7 1;
+  /* translate: -10%; */
+  opacity: 0;
+}
+
 /* --------------- Menu Styles */
+
+.cmstl-responsive-menu-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.cmstl-menu-toggle {
+  cursor: pointer;
+}
 
 .cmstl-responsive-menu ul {
   display: flex;
@@ -178,6 +316,7 @@ h6 {
   align-items: center;
 
   font-size: 2.2rem;
+  letter-spacing: 0.2rem;
 
   /* backdrop filter */
   backdrop-filter: var(--cmstl-blur);
@@ -197,7 +336,7 @@ h6 {
 
 /* ---------------------------------------------- Main Styles */
 
-/* --------------- Entry Point */
+/* --------------- Hero */
 
 .cmstl-background-image {
   /* width: 100vw;
@@ -217,21 +356,102 @@ h6 {
   background-position: 50% 50%;
 }
 
-.cmstl-entry-point {
+.cmstl-background-noise {
+  position: absolute;
+  inset: 0;
+
+  z-index: -500;
+
+  opacity: 0.02;
+
+  background-image: url("media/noise.gif");
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.cmstl-hero {
   height: 100vh;
   display: flex;
   align-items: end;
 }
 
-.cmstl-entry-point h1 {
+.cmstl-hero h1 {
+  line-height: 7.8rem;
+
   padding-bottom: 13.4rem;
-  font-size: 7.2rem;
-  font-weight: 600;
-  line-height: 6.8rem;
-  letter-spacing: -0.08rem;
 }
 
-.cmstl-entry-point span {
+.cmstl-hero span {
   display: block;
   width: min-content;
 }
+
+/* --------------- Hey There */
+
+.cmstl-hey-there {
+  margin-top: 46rem;
+  margin-bottom: 23rem;
+}
+
+.cmstl-hey-there h1:first-child {
+  margin-bottom: 7.68rem;
+}
+
+.cmstl-hey-there h1:nth-child(3) {
+  margin-top: 3.4rem;
+}
+
+.cmstl-hey-there h1:nth-child(4) {
+  margin-top: 3.4rem;
+}
+
+/* --------------- What We Do */
+
+.cmstl-what-we-do {
+  margin-top: 38.4rem;
+  margin-bottom: 23rem;
+}
+
+.cmstl-what-we-do .cmstl-fw-xl {
+  margin-bottom: 7.68rem;
+}
+
+.cmstl-what-we-do h1 {
+  margin-bottom: 1.44rem;
+}
+
+.cmstl-what-we-do .cmstl-article-wrapper {
+  display: flex;
+}
+
+.cmstl-what-we-do .cmstl-content-wrapper {
+  max-width: 67%;
+  margin-bottom: 4.8rem;
+}
+
+.cmstl-what-we-do .cmstl-content-wrapper .cmstl-fw-normal {
+  max-width: 60%;
+}
+
+/* --------------- Motto */
+
+.cmstl-motto {
+  margin-top: 23rem;
+  margin-bottom: 23rem;
+
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+}
+
+.cmstl-motto > div {
+  width: 67%;
+}
+
+.cmstl-motto .cmstl-fw-lg {
+  line-height: 7.8rem;
+}
+
+/* --------------- Say Hello */
