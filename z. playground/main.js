@@ -21,4 +21,11 @@ document.querySelector(".expanding-elem").addEventListener("click", (e) => {
   }
 });
 
-// checking amount scrolled from the top
+// checking intersection observer
+
+const observer = new IntersectionObserver((entries) => {
+  const entry = entries[0];
+  entry.target.classList.toggle("js-scroll-anim", entry.isIntersecting);
+});
+
+observer.observe(document.querySelector(".elem"));

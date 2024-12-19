@@ -37,12 +37,18 @@
 :root {
   /* --cmstl-bg-color: hsl(0, 0%, 0%); background color */
   --cmstl-bg-color: rgb(13, 13, 13);
+  --cmstl-bg-color-footer: rgb(0, 0, 0);
 
   /* --cmstl-f-color: rgb(231, 233, 234);  */
   --cmstl-f-color: rgb(255, 255, 255); /* font color */
+
   /* --cmstl-f-color-link-hover: rgb(230, 26, 46); */
   /* --cmstl-f-color-link-hover: rgb(0, 49, 127); */
+
   --cmstl-f-color-link-hover: rgb(93, 155, 219);
+
+  /* --cmstl-f-color-link-hover: rgb(93, 122, 219); */
+  /* --cmstl-f-color-link-hover: rgb(100, 165, 223); */
 
   --cmstl-blur: blur(4px);
   --cmstl-blur-lg: blur(16px);
@@ -66,8 +72,11 @@ html {
 
 body {
   /* temporary */
-  min-height: 500rem;
+  /* min-height: 500rem; */
+
   position: relative;
+
+  overscroll-behavior-y: none;
 
   background-color: var(--cmstl-bg-color);
   color: var(--cmstl-f-color);
@@ -109,6 +118,21 @@ ul {
   margin-inline: auto;
 }
 
+.cmstl-section-wrapper-header {
+  /* same as .cmstl-section-wrapper, but a different name so that it is not grabbed by the background movement function */
+  max-width: 153.6rem;
+  padding-inline: 11.5rem;
+  padding-block: 3.84rem;
+  margin-inline: auto;
+
+  z-index: 1000;
+}
+
+.cmstl-section-wrapper-margin {
+  margin-top: 23rem;
+  margin-bottom: 23rem;
+}
+
 .cmstl-blur {
   backdrop-filter: var(--cmstl-blur);
 }
@@ -145,6 +169,8 @@ h6 {
   font-weight: 600;
   line-height: 12.3rem;
   letter-spacing: -0.384rem;
+
+  margin-bottom: 7.68rem;
 }
 
 .cmstl-fw-lg {
@@ -154,12 +180,19 @@ h6 {
   letter-spacing: -0.1536rem;
 }
 
+.cmstl-mw-responsive-lg {
+  /* typically the parent div of .cmstl-fw-lg */
+  max-width: 67%;
+}
+
 .cmstl-fw-normal {
   font-size: 1.92rem;
   font-weight: 400;
   line-height: 2.88rem;
   /* letter-spacing: 0.0192rem; */
   letter-spacing: 0.07rem;
+
+  max-width: 60%;
 }
 
 .cmstl-fw-small {
@@ -195,7 +228,7 @@ h6 {
 /* --------------- Modal Styles (Menu and Form) */
 
 .cmstl-modal-menu {
-  z-index: 1000;
+  z-index: 2000;
   position: fixed;
   inset: 0;
 
@@ -348,6 +381,7 @@ h6 {
   z-index: -1000;
 
   background-image: url("media/digital-dark-4-unsplash.jpg");
+  /* background-image: url("media/background-img-2.png"); */
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
@@ -362,7 +396,7 @@ h6 {
 
   z-index: -500;
 
-  opacity: 0.02;
+  opacity: 0.01;
 
   background-image: url("media/noise.gif");
   background-attachment: fixed;
@@ -391,33 +425,23 @@ h6 {
 
 .cmstl-hey-there {
   margin-top: 46rem;
-  margin-bottom: 23rem;
 }
 
-.cmstl-hey-there h1:first-child {
-  margin-bottom: 7.68rem;
+.cmstl-hey-there h1:nth-child(2) {
+  margin-bottom: 3.4rem;
 }
 
 .cmstl-hey-there h1:nth-child(3) {
-  margin-top: 3.4rem;
-}
-
-.cmstl-hey-there h1:nth-child(4) {
-  margin-top: 3.4rem;
+  margin-bottom: 3.4rem;
 }
 
 /* --------------- What We Do */
 
 .cmstl-what-we-do {
   margin-top: 38.4rem;
-  margin-bottom: 23rem;
 }
 
-.cmstl-what-we-do .cmstl-fw-xl {
-  margin-bottom: 7.68rem;
-}
-
-.cmstl-what-we-do h1 {
+.cmstl-content-wrapper h1 {
   margin-bottom: 1.44rem;
 }
 
@@ -426,28 +450,16 @@ h6 {
 }
 
 .cmstl-what-we-do .cmstl-content-wrapper {
-  max-width: 67%;
   margin-bottom: 4.8rem;
-}
-
-.cmstl-what-we-do .cmstl-content-wrapper .cmstl-fw-normal {
-  max-width: 60%;
 }
 
 /* --------------- Motto */
 
 .cmstl-motto {
-  margin-top: 23rem;
-  margin-bottom: 23rem;
-
   min-height: 100vh;
 
   display: flex;
   align-items: center;
-}
-
-.cmstl-motto > div {
-  width: 67%;
 }
 
 .cmstl-motto .cmstl-fw-lg {
@@ -455,3 +467,92 @@ h6 {
 }
 
 /* --------------- Say Hello */
+
+.cmstl-say-hello .cmstl-fw-lg {
+  margin-bottom: 3.84rem;
+}
+
+.cmstl-contact-wrapper {
+  margin-top: 6.72rem;
+}
+
+.cmstl-contact-controls-wrapper {
+  display: flex;
+  column-gap: 6.72rem;
+}
+
+.cmstl-contact {
+  padding: 2rem;
+  border-radius: 0.24rem;
+
+  width: max-content;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--cmstl-f-color-link-hover);
+
+  transition-property: background-color;
+  transition-duration: 300ms;
+  transition-timing-function: linear;
+}
+
+.cmstl-contact:hover {
+  background-color: var(--cmstl-f-color);
+}
+
+.cmstl-contact svg {
+  width: 5.8rem;
+  height: 5.8rem;
+
+  pointer-events: none;
+}
+
+.cmstl-phone {
+  stroke: var(--cmstl-f-color);
+}
+
+.cmstl-phone:hover {
+  stroke: var(--cmstl-f-color-link-hover);
+}
+
+.cmstl-mail:hover {
+  color: var(--cmstl-f-color-link-hover);
+}
+
+/* ---------------------------------------------- Footer Styles */
+
+.cmstl-footer-bg-color {
+  background-color: var(--cmstl-bg-color);
+}
+
+.cmstl-section-wrapper.cmstl-footer-bg-color {
+  /* gets rid of section-wrapper width and margin */
+  margin-inline: 0;
+  max-width: 100%;
+}
+
+.cmstl-footer {
+  margin-top: 3.84rem;
+  margin-bottom: 1.92rem;
+
+  /* sets section-wrapper styles back */
+  max-width: 153.6rem;
+  margin-inline: auto;
+}
+
+.cmstl-copyright-section {
+  margin-top: 7.68rem;
+
+  font-size: 1.44rem;
+  letter-spacing: 0.0192rem;
+  line-height: 1.92rem;
+}
+
+.cmstl-site-logo-text.cmstl-reposition-text {
+  transform: translate(0%, -50%);
+}
+
+/* ---------------------------------------------- Media Queries */
