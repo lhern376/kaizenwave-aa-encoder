@@ -59,6 +59,8 @@
   --scroll-bar-thumb: rgb(62, 65, 68);
   --scroll-bar-track: rgb(22, 24, 28);
 
+  --scroll: 0;
+
   scroll-behavior: smooth;
 
   font-size: 10px;
@@ -213,7 +215,7 @@ h6 {
 }
 
 /* --------------- Animations */
-.cmstl-fade-out {
+/* .cmstl-fade-out {
   animation: fade-out linear forwards;
   animation-timeline: view();
   animation-range-start: 40rem;
@@ -232,7 +234,7 @@ h6 {
     opacity: 0;
     transform: translateY(-200px);
   }
-}
+} */
 
 /* --------------- Modal Styles (Menu and Form) */
 
@@ -421,10 +423,24 @@ h6 {
   align-items: end;
 }
 
-.cmstl-hero h1 {
+.cmstl-hero .cmstl-fw-lg {
   /* line-height: 7.8rem; */
 
   padding-bottom: 13.4rem;
+
+  /* (oldVal - oldMin) * newRange / oldRange + newMin */
+  /* 
+    - Opacity:
+      oldVal = var(--scroll), variable: 0 - 20
+      oldMin = 1, where you want to start
+      newRange = -1, from 1 to 0
+      oldRange = 20, 0 to targetRatio
+      newMin = 0,
+  */
+
+  /* opacity: calc((var(--scroll) - 1) * -1 / 20); */
+
+  opacity: calc(1 - (var(--scroll) / (100 / 3)));
 }
 
 .cmstl-hero span {
@@ -556,7 +572,7 @@ h6 {
 .cmstl-motto .cmstl-fw-lg {
   opacity: 0;
 
-  transition: opacity 3000ms ease-in;
+  transition: opacity 2000ms ease-in;
 }
 
 .cmstl-motto .cmstl-motto-scroll-anim {

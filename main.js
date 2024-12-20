@@ -1,20 +1,22 @@
 // Index
 
-//  * ---- Background-image movement ----
+//  * ---- Background-image movement
 
-//  * ---- Animate logo on scroll ----
+//  * ---- Animate logo on scroll
 
-//  * ---- Flicker Effects ----
+//  * ---- Text Scroll Animation: Hero text
 
-//  * ---- Background Movement Effect ----
+//  * ---- Flicker Effects
 
-//  * ---- Text Scroll Animations (scroll triggered, intersectionObserver) ----
+//  * ---- Background Movement Effect
+
+//  * ---- Text Scroll Animations (scroll triggered, intersectionObserver)
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
 
 /**
  *
- * ---- Background-image movement ----
+ * ---- Background-image movement
  *
  * - single image, single value
  *
@@ -42,22 +44,25 @@
 
 /**
  *
- * ---- Animate logo on scroll ----
+ * ---- Animate logo on scroll
  *
  * - animate logo at 5% of dom height (NOTE: adjust percent as the page grows in content)
  *
  */
+
+const targetRatio = 1 / 3;
 
 const logoText = document.querySelector(".cmstl-site-logo-text");
 const logo = document.querySelector(".cmstl-site-logo");
 
 window.addEventListener("scroll", () => {
   let pixelsFromTop = window.scrollY;
-  let domHeight = document.body.offsetHeight;
+  // let domHeight = document.body.offsetHeight;
+  let screenHeight = document.documentElement.clientHeight;
 
-  // animate logo at 5% of dom height (NOTE: adjust percent as the page grows in content)
+  // animate logo at 40% of screen height (NOTE: adjust percent as the page grows in content)
 
-  if (pixelsFromTop / domHeight >= 0.05) {
+  if (pixelsFromTop / screenHeight >= targetRatio) {
     logoText.classList.add("cmstl-site-logo-text-shrink");
     logo.classList.remove("cmstl-invisible");
   } else {
@@ -68,12 +73,35 @@ window.addEventListener("scroll", () => {
 
 /**
  *
- * ---- Flicker Effects ----
+ * ---- Text Scroll Animation: Hero text
+ *
+ *  - https://www.youtube.com/watch?v=-pDPASqX97w (great tutorial)
+ *
+ */
+
+window.addEventListener("scroll", setScrollProp);
+window.addEventListener("resize", setScrollProp);
+
+function setScrollProp() {
+  const htmlElement = document.documentElement;
+  const currentRatio = Math.min(
+    htmlElement.scrollTop / htmlElement.clientHeight,
+    targetRatio
+  );
+  console.log(currentRatio * 100);
+  htmlElement.style.setProperty("--scroll", currentRatio * 100); // gives a value from 0 - 20, targetRatio = 0.2
+}
+
+setScrollProp();
+
+/**
+ *
+ * ---- Flicker Effects
  *
  *
  */
 
-// ---------------------------------------------------- TEMPLATE ----
+// ---------------------------------------------------- TEMPLATE
 
 // const element = document.getElementById("myElement");
 // let intervalId;
@@ -94,12 +122,12 @@ window.addEventListener("scroll", () => {
 //   element.style.backgroundColor = "lightblue"; // Reset to original color
 // });
 
-// ---------------------------------------------------- Site Colors ----
+// ---------------------------------------------------- Site Colors
 
 let siteColor = "rgb(93, 155, 219)";
 let baseColor = "rgb(255, 255, 255)";
 
-// ---------------------------------------------------- Contact Buttons ----
+// ---------------------------------------------------- Contact Buttons
 
 let intervalId;
 
@@ -140,7 +168,7 @@ document.addEventListener("mouseover", (e) => {
   }
 });
 
-// ---------------------------------------------------- Motto Text ----
+// ---------------------------------------------------- Motto Text
 
 const textFlicker = document.querySelector(".cmstl-text-flicker");
 
@@ -161,7 +189,7 @@ setInterval(() => {
 
 /**
  *
- * ---- Background Movement Effect ----
+ * ---- Background Movement Effect
  *
  *
  */
@@ -187,12 +215,12 @@ document.addEventListener("mousemove", (e) => {
 
 /**
  *
- * ---- Text Scroll Animations (scroll triggered, intersectionObserver) ----
+ * ---- Text Scroll Animations (scroll triggered, intersectionObserver)
  *
  *
  */
 
-// ---------------------------------------------------- Hey there section text ----
+// ---------------------------------------------------- Hey there section text
 
 // --------------- xl text
 
@@ -239,7 +267,7 @@ hey_there_other_arr.forEach((entry) => {
   hey_there_observer_other.observe(entry);
 });
 
-// ---------------------------------------------------- What we do section text ----
+// ---------------------------------------------------- What we do section text
 
 // --------------- xl text
 
@@ -300,7 +328,7 @@ what_we_do_normal_arr.forEach((entry) => {
   what_we_do_observer_normal.observe(entry);
 });
 
-// ---------------------------------------------------- Motto section text ----
+// ---------------------------------------------------- Motto section text
 
 const motto_observer = new IntersectionObserver((entries) => {
   const entry = entries[0];
@@ -315,7 +343,7 @@ const motto_observer = new IntersectionObserver((entries) => {
 
 motto_observer.observe(document.querySelector(".cmstl-motto .cmstl-fw-lg"));
 
-// ---------------------------------------------------- Say hello section text ----
+// ---------------------------------------------------- Say hello section text
 
 const say_hello_observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
@@ -326,7 +354,7 @@ const say_hello_observer = new IntersectionObserver((entries) => {
       entry.isIntersecting
     );
 
-    // if (entry.isIntersecting) say_hello_observer.unobserve(entry.target);
+    if (entry.isIntersecting) say_hello_observer.unobserve(entry.target);
   });
 });
 
