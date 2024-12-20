@@ -1,3 +1,17 @@
+// Index
+
+//  * ---- Background-image movement ----
+
+//  * ---- Animate logo on scroll ----
+
+//  * ---- Flicker Effects ----
+
+//  * ---- Background Movement Effect ----
+
+//  * ---- Text Scroll Animations (scroll triggered, intersectionObserver) ----
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+
 /**
  *
  * ---- Background-image movement ----
@@ -90,7 +104,7 @@ let baseColor = "rgb(255, 255, 255)";
 let intervalId;
 
 document.addEventListener("mouseover", (e) => {
-  console.log(e.target);
+  // console.log(e.target);
 
   let isContact = e.target.classList.contains("cmstl-contact");
 
@@ -131,7 +145,7 @@ document.addEventListener("mouseover", (e) => {
 const textFlicker = document.querySelector(".cmstl-text-flicker");
 
 setInterval(() => {
-  console.log("Motto flicker");
+  // console.log("Motto flicker");
 
   // number between 3 and 5 (range: 5 - 3 = 2)
   let num1 = 3 + Math.random() * 2;
@@ -169,4 +183,169 @@ document.addEventListener("mousemove", (e) => {
     // set the new transform for each section
     section.style.transform = transform;
   });
+});
+
+/**
+ *
+ * ---- Text Scroll Animations (scroll triggered, intersectionObserver) ----
+ *
+ *
+ */
+
+// ---------------------------------------------------- Hey there section text ----
+
+// --------------- xl text
+
+const hey_there_observer_xl = new IntersectionObserver(
+  (entries) => {
+    const entry = entries[0];
+
+    entry.target.classList.toggle(
+      "cmstl-hey-there-scroll-anim-xl",
+      entry.isIntersecting
+    );
+
+    if (entry.isIntersecting) hey_there_observer_xl.unobserve(entry.target);
+  },
+  { rootMargin: "-50px" }
+);
+
+const hey_there_xl = document.querySelector(".cmstl-hey-there .cmstl-fw-xl");
+
+hey_there_observer_xl.observe(hey_there_xl);
+
+// --------------- other text
+
+const hey_there_observer_other = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      entry.target.classList.toggle(
+        "cmstl-hey-there-scroll-anim-other",
+        entry.isIntersecting
+      );
+
+      if (entry.isIntersecting)
+        hey_there_observer_other.unobserve(entry.target);
+    });
+  },
+  { rootMargin: "-50px" }
+);
+
+const hey_there_other_arr = document.querySelectorAll(
+  ".cmstl-hey-there .cmstl-fw-lg"
+);
+
+hey_there_other_arr.forEach((entry) => {
+  hey_there_observer_other.observe(entry);
+});
+
+// ---------------------------------------------------- What we do section text ----
+
+// --------------- xl text
+
+const what_we_do_observer_xl = new IntersectionObserver((entries) => {
+  const entry = entries[0];
+
+  entry.target.classList.toggle(
+    "cmstl-what-we-do-scroll-anim-xl",
+    entry.isIntersecting
+  );
+
+  // if (entry.isIntersecting) what_we_do_observer_xl.unobserve(entry.target);
+});
+
+const what_we_do_xl = document.querySelector(".cmstl-what-we-do .cmstl-fw-xl");
+
+what_we_do_observer_xl.observe(what_we_do_xl);
+
+// --------------- lg text
+
+const what_we_do_observer_lg = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    entry.target.classList.toggle(
+      "cmstl-what-we-do-scroll-anim-lg",
+      entry.isIntersecting
+    );
+
+    // if (entry.isIntersecting) what_we_do_observer_lg.unobserve(entry.target);
+  });
+});
+
+const what_we_do_lg_arr = document.querySelectorAll(
+  ".cmstl-what-we-do .cmstl-fw-lg"
+);
+
+what_we_do_lg_arr.forEach((entry) => {
+  what_we_do_observer_lg.observe(entry);
+});
+
+// --------------- normal text
+
+const what_we_do_observer_normal = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    entry.target.classList.toggle(
+      "cmstl-what-we-do-scroll-anim-normal",
+      entry.isIntersecting
+    );
+
+    // if (entry.isIntersecting) what_we_do_observer_normal.unobserve(entry.target);
+  });
+});
+
+const what_we_do_normal_arr = document.querySelectorAll(
+  ".cmstl-what-we-do .cmstl-fw-normal"
+);
+
+what_we_do_normal_arr.forEach((entry) => {
+  what_we_do_observer_normal.observe(entry);
+});
+
+// ---------------------------------------------------- Motto section text ----
+
+const motto_observer = new IntersectionObserver((entries) => {
+  const entry = entries[0];
+
+  entry.target.classList.toggle(
+    "cmstl-motto-scroll-anim",
+    entry.isIntersecting
+  );
+
+  if (entry.isIntersecting) motto_observer.unobserve(entry.target);
+});
+
+motto_observer.observe(document.querySelector(".cmstl-motto .cmstl-fw-lg"));
+
+// ---------------------------------------------------- Say hello section text ----
+
+const say_hello_observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    // if (entry.isIntersecting) console.log(entry.target);
+
+    entry.target.classList.toggle(
+      "cmstl-say-hello-scroll-anim",
+      entry.isIntersecting
+    );
+
+    // if (entry.isIntersecting) say_hello_observer.unobserve(entry.target);
+  });
+});
+
+const say_hello_xl = document.querySelector(".cmstl-say-hello .cmstl-fw-xl");
+const say_hello_lg = document.querySelector(".cmstl-say-hello .cmstl-fw-lg");
+const say_hello_normal = document.querySelector(
+  ".cmstl-say-hello .cmstl-fw-normal"
+);
+const say_hello_contact = document.querySelector(
+  ".cmstl-say-hello .cmstl-contact-controls-wrapper"
+);
+
+const say_hello_arr = [
+  say_hello_xl,
+  say_hello_lg,
+  say_hello_normal,
+  say_hello_contact,
+];
+
+say_hello_arr.forEach((entry) => {
+  say_hello_observer.observe(entry);
 });

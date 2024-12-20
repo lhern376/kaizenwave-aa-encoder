@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Animation with IntersectionObserver</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      section {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        opacity: 0; /* Start with the section hidden */
+        transform: translateY(50px); /* Start below the viewport */
+        transition: opacity 1s, transform 1s; /* Animate opacity and position */
+      }
+
+      .in-view {
+        opacity: 1; /* Fade in */
+        transform: translateY(0); /* Move into view */
+      }
+
+      h1 {
+        font-size: 3rem;
+        color: #333;
+      }
+
+      .container {
+        height: 300vh; /* Makes the page scrollable */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <section>
+        <h1>Section 1</h1>
+      </section>
+      <section>
+        <h1>Section 2</h1>
+      </section>
+      <section>
+        <h1>Section 3</h1>
+      </section>
+      <section>
+        <h1>Section 4</h1>
+      </section>
+    </div>
+
+    <script>
+      // Create the IntersectionObserver
+      const observer = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // When the element comes into view, add the class to trigger the animation
+              entry.target.classList.add("in-view");
+              // Optionally, you can stop observing the element after it has been animated
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.5, // Trigger when 50% of the element is in view
+        }
+      );
+
+      // Select all sections and observe them
+      const sections = document.querySelectorAll("section");
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+    </script>
+  </body>
+</html>

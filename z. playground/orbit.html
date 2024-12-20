@@ -1,0 +1,102 @@
+<!-- Prompt: 
+ - javascript code for a small div orbiting in a parabola fashion around a larger div 
+ 
+ Explanation:
+HTML Structure: We have a container div which holds both the large and small div elements. The larger div serves as the "center" around which the small div orbits.
+
+CSS Styling:
+
+The container is set to be a square (500px x 500px) with a light gray background and a border radius to make it round.
+The large div is placed in the center of the container using position: absolute and transform: translate(-50%, -50%).
+The small div is initially placed at the center as well but will be moved by JavaScript to follow a parabolic path.
+JavaScript Animation:
+
+We calculate the position of the small div in a parabolic path using the Math.cos() and Math.sin() functions.
+The angle variable is incremented over time to move the small div in a circular path while modifying its x-coordinate with a parabolic function (Math.cos(angle) * amplitude * Math.sin(angle)).
+The requestAnimationFrame method is used to continuously update the small div's position, creating a smooth animation.
+Customization:
+Amplitude: Adjust the amplitude variable to control how high or wide the parabolic path is.
+Frequency: You can modify the frequency value to adjust how quickly the small div moves horizontally.
+Speed: The speed of the orbit can be adjusted by changing the value of angle += 0.02;.
+This setup makes the small div move in a dynamic, smooth parabolic path around the large div.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parabolic Orbit</title>
+    <style>
+      /* Container for the larger div */
+      .container {
+        width: 500px;
+        height: 500px;
+        position: relative;
+        margin: 100px auto;
+        background-color: lightgray;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      /* The large div (center of the orbit) */
+      .large-div {
+        width: 100px;
+        height: 100px;
+        background-color: #3498db;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+      }
+
+      /* The small div that will orbit */
+      .small-div {
+        width: 30px;
+        height: 30px;
+        background-color: #e74c3c;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="large-div"></div>
+      <div class="small-div"></div>
+    </div>
+
+    <script>
+      const smallDiv = document.querySelector(".small-div");
+      const container = document.querySelector(".container");
+      const centerX = container.offsetWidth / 2;
+      const centerY = container.offsetHeight / 2;
+
+      // Parameters for the parabolic orbit
+      const amplitude = 100; // The "height" of the parabola
+      const frequency = 0.05; // Controls how fast it moves horizontally
+
+      let angle = 0; // Start angle for movement
+
+      function animateOrbit() {
+        angle += 0.02; // Increase angle to move along the path
+
+        // Calculate the x and y coordinates based on a parabolic path
+        const x = centerX + Math.cos(angle) * (amplitude * Math.sin(angle)); // Horizontal movement with parabolic effect
+        const y = centerY + Math.sin(angle) * 100; // Vertical circular movement
+
+        // Apply the calculated position to the small div
+        smallDiv.style.left = `${x - smallDiv.offsetWidth / 2}px`;
+        smallDiv.style.top = `${y - smallDiv.offsetHeight / 2}px`;
+
+        // Request the next frame
+        requestAnimationFrame(animateOrbit);
+      }
+
+      animateOrbit(); // Start the animation
+    </script>
+  </body>
+</html>

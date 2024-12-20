@@ -22,7 +22,9 @@
 
 /* --------------- Motto */
 
-/* --------------- Say Hello */
+/* --------------- Say Hello and Contact Controls */
+
+/* --------------- Fixed Controls */
 
 /* ---------------------------------------------- Footer Styles */
 
@@ -56,6 +58,8 @@
   /* scrollbar */
   --scroll-bar-thumb: rgb(62, 65, 68);
   --scroll-bar-track: rgb(22, 24, 28);
+
+  scroll-behavior: smooth;
 
   font-size: 10px;
   font-family: "Neue Haas Grotesk Display Pro", Arial, sans-serif;
@@ -107,6 +111,10 @@ ul {
 .cmstl-global-wrapper {
   /* provides global center */
   /* margin-inline: auto; */
+}
+
+.cmstl-page-min-height {
+  min-height: 90vh;
 }
 
 .cmstl-section-wrapper {
@@ -177,6 +185,7 @@ h6 {
   font-size: 7.2rem;
   font-weight: 600;
   line-height: 6.8rem;
+  /* line-height: 7.8rem; */
   letter-spacing: -0.1536rem;
 }
 
@@ -275,7 +284,7 @@ h6 {
 .cmstl-site-logo-wrapper {
   /* backdrop filter */
   backdrop-filter: var(--cmstl-blur);
-  padding: 0.9rem;
+  /* padding: 0.9rem; */
   border-radius: 1.5rem;
 
   position: relative;
@@ -341,6 +350,11 @@ h6 {
 
 .cmstl-menu-toggle {
   cursor: pointer;
+  display: none;
+}
+
+.cmstl-menu-toggle svg {
+  pointer-events: none;
 }
 
 .cmstl-responsive-menu ul {
@@ -349,7 +363,7 @@ h6 {
   align-items: center;
 
   font-size: 2.2rem;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.1rem;
 
   /* backdrop filter */
   backdrop-filter: var(--cmstl-blur);
@@ -372,9 +386,6 @@ h6 {
 /* --------------- Hero */
 
 .cmstl-background-image {
-  /* width: 100vw;
-  height: 100vh; */
-
   position: absolute;
   inset: 0;
 
@@ -411,7 +422,7 @@ h6 {
 }
 
 .cmstl-hero h1 {
-  line-height: 7.8rem;
+  /* line-height: 7.8rem; */
 
   padding-bottom: 13.4rem;
 }
@@ -435,6 +446,36 @@ h6 {
   margin-bottom: 3.4rem;
 }
 
+/* intersectionObserver anim */
+
+/* xl */
+
+.cmstl-hey-there .cmstl-fw-xl {
+  opacity: 0;
+  transform: translateY(10rem);
+
+  transition: opacity 1000ms linear, transform 500ms ease-out;
+}
+
+.cmstl-hey-there .cmstl-hey-there-scroll-anim-xl {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* other text */
+
+.cmstl-hey-there .cmstl-fw-lg {
+  opacity: 0;
+  transform: translateY(5rem);
+
+  transition: opacity 1000ms linear, transform 500ms linear;
+}
+
+.cmstl-hey-there .cmstl-hey-there-scroll-anim-other {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* --------------- What We Do */
 
 .cmstl-what-we-do {
@@ -453,6 +494,50 @@ h6 {
   margin-bottom: 4.8rem;
 }
 
+/* intersectionObserver anim */
+
+/* xl */
+
+.cmstl-what-we-do .cmstl-fw-xl {
+  opacity: 0;
+  transform: translateY(10rem);
+
+  transition: opacity 1000ms linear, transform 500ms ease-out;
+}
+
+.cmstl-what-we-do .cmstl-what-we-do-scroll-anim-xl {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* lg */
+
+.cmstl-what-we-do .cmstl-fw-lg {
+  opacity: 0;
+  transform: translateY(-1rem);
+
+  transition: opacity 1500ms linear, transform 1000ms linear;
+}
+
+.cmstl-what-we-do .cmstl-what-we-do-scroll-anim-lg {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* normal */
+
+.cmstl-what-we-do .cmstl-fw-normal {
+  opacity: 0;
+  transform: translateY(-4rem);
+
+  transition: opacity 1000ms linear, transform 1000ms linear;
+}
+
+.cmstl-what-we-do .cmstl-what-we-do-scroll-anim-normal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* --------------- Motto */
 
 .cmstl-motto {
@@ -462,23 +547,35 @@ h6 {
   align-items: center;
 }
 
-.cmstl-motto .cmstl-fw-lg {
+/* .cmstl-motto .cmstl-fw-lg {
   line-height: 7.8rem;
+} */
+
+/* intersectionOverver animation */
+
+.cmstl-motto .cmstl-fw-lg {
+  opacity: 0;
+
+  transition: opacity 3000ms ease-in;
 }
 
-/* --------------- Say Hello */
+.cmstl-motto .cmstl-motto-scroll-anim {
+  opacity: 1;
+}
+
+/* --------------- Say Hello and Contact Controls */
 
 .cmstl-say-hello .cmstl-fw-lg {
   margin-bottom: 3.84rem;
 }
 
-.cmstl-contact-wrapper {
-  margin-top: 6.72rem;
-}
-
 .cmstl-contact-controls-wrapper {
   display: flex;
-  column-gap: 6.72rem;
+  column-gap: 3.72rem;
+}
+
+.cmstl-contact-wrapper {
+  margin-top: 6.72rem;
 }
 
 .cmstl-contact {
@@ -522,6 +619,47 @@ h6 {
   color: var(--cmstl-f-color-link-hover);
 }
 
+/* intersectionObserver animation */
+
+.cmstl-say-hello .cmstl-fw-xl,
+.cmstl-say-hello .cmstl-fw-lg,
+.cmstl-say-hello .cmstl-fw-normal,
+.cmstl-say-hello .cmstl-contact-controls-wrapper {
+  transform: translate(-10rem, 10rem);
+  opacity: 0;
+
+  transition: transform 500ms ease-out, opacity 1000ms linear;
+}
+
+.cmstl-say-hello .cmstl-say-hello-scroll-anim {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* --------------- Fixed Controls */
+
+.cmstl-fixed-controls {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+
+  padding: 2.4rem;
+}
+
+.cmstl-fixed-controls .cmstl-contact-wrapper {
+  margin: 0;
+}
+
+.cmstl-fixed-controls.cmstl-contact-controls-wrapper {
+  column-gap: 2.72rem;
+}
+
+.cmstl-fixed-controls .cmstl-contact svg {
+  width: 2.9rem;
+  height: 2.9rem;
+}
+
 /* ---------------------------------------------- Footer Styles */
 
 .cmstl-footer-bg-color {
@@ -556,3 +694,163 @@ h6 {
 }
 
 /* ---------------------------------------------- Media Queries */
+
+@media screen and (max-width: 1024px) {
+  .cmstl-section-wrapper {
+    /* - provides section padding */
+    /* - responsive width */
+    padding-inline: 7.68rem;
+  }
+
+  .cmstl-section-wrapper-header {
+    /* same as .cmstl-section-wrapper, but a different name so that it is not grabbed by the background movement function */
+    padding-inline: 7.68rem;
+  }
+
+  .cmstl-motto .cmstl-mw-responsive-lg {
+    max-width: 100%;
+  }
+
+  .cmstl-fw-lg {
+    line-height: 6.84rem;
+  }
+
+  .cmstl-fw-normal {
+    max-width: 100%;
+  }
+
+  .cmstl-menu-toggle {
+    display: block;
+  }
+
+  .cmstl-responsive-menu {
+    display: none;
+  }
+
+  .cmstl-hero span {
+    transform: scale(0.8);
+    transform-origin: left;
+  }
+
+  .cmstl-footer .cmstl-responsive-menu {
+    display: block;
+  }
+
+  .cmstl-nav-wrapper .cmstl-footer-nav {
+    display: block;
+  }
+
+  .cmstl-footer .cmstl-responsive-menu ul {
+    display: block;
+  }
+
+  .cmstl-footer .cmstl-responsive-menu ul li {
+    padding-inline: 0;
+    padding-block: 0.6rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* --------------- Section Layout */
+
+  .cmstl-section-wrapper {
+    /* - provides section padding */
+    /* - responsive width */
+    padding-inline: 2.4rem;
+    padding-block: 2.4rem;
+  }
+
+  .cmstl-section-wrapper-header {
+    /* same as .cmstl-section-wrapper, but a different name so that it is not grabbed by the background movement function */
+    padding-inline: 2.4rem;
+    padding-block: 2.4rem;
+  }
+
+  .cmstl-section-wrapper-margin {
+    margin-top: 3.84rem;
+    margin-bottom: 15.4rem;
+  }
+
+  .cmstl-hero span {
+    transform: scale(1);
+  }
+
+  .cmstl-hey-there {
+    margin-top: 30.7rem;
+  }
+
+  .cmstl-what-we-do {
+    margin-top: 23rem;
+  }
+
+  /* --------------- Text Content */
+
+  .cmstl-fw-xl {
+    font-size: 10.5rem;
+    line-height: 8.44rem;
+
+    margin-bottom: 3.84rem;
+  }
+
+  .cmstl-fw-lg {
+    font-size: 4.8rem;
+    line-height: 4.56rem;
+    letter-spacing: -0.1536rem;
+  }
+
+  /* --------------- Contact Controls */
+
+  .cmstl-contact-controls-wrapper {
+    column-gap: 2.72rem;
+  }
+
+  .cmstl-contact svg {
+    width: 2.9rem;
+    height: 2.9rem;
+  }
+
+  .cmstl-fixed-controls {
+    padding: 1.44rem;
+  }
+
+  .cmstl-fixed-controls .cmstl-contact {
+    padding: 1.44rem;
+  }
+
+  .cmstl-fixed-controls .cmstl-contact svg {
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  /* Helps hero text not overflow */
+  .cmstl-hero .cmstl-fw-lg {
+    font-size: 3.5rem;
+    line-height: 4rem;
+    letter-spacing: -0.1536rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .cmstl-fw-xl {
+    font-size: 8.5rem;
+    line-height: 8.44rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  /* Helps hero text not overflow */
+  .cmstl-hero .cmstl-fw-lg {
+    font-size: 3rem;
+    line-height: 3.2rem;
+    letter-spacing: -0.1536rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .cmstl-fw-xl {
+    font-size: 6.5rem;
+    line-height: 5.44rem;
+  }
+}
