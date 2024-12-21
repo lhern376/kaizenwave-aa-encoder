@@ -12,6 +12,8 @@
 
 //  * ---- Text Scroll Animations (scroll triggered, intersectionObserver)
 
+//  * ---- Modal Animation
+
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
 
 /**
@@ -50,17 +52,15 @@
  *
  */
 
-const targetRatio = 1 / 3;
+const targetRatio = 1 / 3; // one third of screen scrolled
 
 const logoText = document.querySelector(".cmstl-site-logo-text");
 const logo = document.querySelector(".cmstl-site-logo");
 
 window.addEventListener("scroll", () => {
   let pixelsFromTop = window.scrollY;
-  // let domHeight = document.body.offsetHeight;
-  let screenHeight = document.documentElement.clientHeight;
-
-  // animate logo at 40% of screen height (NOTE: adjust percent as the page grows in content)
+  // let domHeight = document.body.offsetHeight; // dom height
+  let screenHeight = document.documentElement.clientHeight; // screen height rather than dom height
 
   if (pixelsFromTop / screenHeight >= targetRatio) {
     logoText.classList.add("cmstl-site-logo-text-shrink");
@@ -77,6 +77,9 @@ window.addEventListener("scroll", () => {
  *
  *  - https://www.youtube.com/watch?v=-pDPASqX97w (great tutorial)
  *
+ *  - the below code is a pretty universal pattern to create and update a css property
+ *  that tracks scroll behavior
+ *
  */
 
 window.addEventListener("scroll", setScrollProp);
@@ -84,15 +87,16 @@ window.addEventListener("resize", setScrollProp);
 
 function setScrollProp() {
   const htmlElement = document.documentElement;
+  // document.documentElement.scrollTop returns window.scrollY (special case of .scrollTop when it is the property of the root/html)
   const currentRatio = Math.min(
     htmlElement.scrollTop / htmlElement.clientHeight,
     targetRatio
-  );
-  console.log(currentRatio * 100);
-  htmlElement.style.setProperty("--scroll", currentRatio * 100); // gives a value from 0 - 20, targetRatio = 0.2
+  ); // value from 0 to targetRatio
+  // console.log(currentRatio * 100);
+  htmlElement.style.setProperty("--scroll", currentRatio * 100); // scales the ratio for convenience
 }
 
-setScrollProp();
+setScrollProp(); // run the function in case page is reloaded
 
 /**
  *
@@ -345,16 +349,30 @@ motto_observer.observe(document.querySelector(".cmstl-motto .cmstl-fw-lg"));
 
 // ---------------------------------------------------- Say hello section text
 
+const say_hello_section = document.querySelector(".cmstl-say-hello"); // observe to hide Fixed Controls on Say Hello section
+const fixed_controls_wrapper = document.querySelector(".cmstl-fixed-controls");
+
 const say_hello_observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     // if (entry.isIntersecting) console.log(entry.target);
+
+    // Special Case (hide contact controls)
+    if (entry.target === say_hello_section) {
+      // hide contact controls
+      fixed_controls_wrapper.classList.toggle(
+        "cmstl-hide-fixed-controls",
+        entry.isIntersecting
+      );
+    }
 
     entry.target.classList.toggle(
       "cmstl-say-hello-scroll-anim",
       entry.isIntersecting
     );
 
-    if (entry.isIntersecting) say_hello_observer.unobserve(entry.target);
+    if (entry.isIntersecting && entry.target !== say_hello_section)
+      // continue observing section
+      say_hello_observer.unobserve(entry.target);
   });
 });
 
@@ -368,6 +386,7 @@ const say_hello_contact = document.querySelector(
 );
 
 const say_hello_arr = [
+  say_hello_section,
   say_hello_xl,
   say_hello_lg,
   say_hello_normal,
@@ -376,4 +395,68 @@ const say_hello_arr = [
 
 say_hello_arr.forEach((entry) => {
   say_hello_observer.observe(entry);
+});
+
+/**
+ *
+ * ---- Modal Animation
+ *
+ *
+ */
+
+// set and track on resize a custom property that updates
+// based on max(screenWidth, screenHeight) (use this property on the expanding-div transition)
+
+window.addEventListener("resize", setSizeProp);
+
+function setSizeProp() {
+  const htmlElement = document.documentElement;
+  const size = Math.max(htmlElement.clientHeight, htmlElement.clientWidth);
+
+  // console.log(size);
+  htmlElement.style.setProperty("--size", size * 2); // whatever it's value, double it
+}
+
+setSizeProp(); // run the function in case page is reloaded
+
+// -------- grab all the elements that interact with modal and implement click event
+
+const modal = document.querySelector(".cmstl-modal-menu");
+const navbar = document.querySelector(".cmstl-nav-wrapper");
+
+// ---- close modals
+
+const elements_that_close_modal = [
+  document.querySelector(".cmstl-modal-close-btn"),
+  ...document.querySelectorAll(".cmstl-modal-menu-wrapper a"),
+];
+
+elements_that_close_modal.forEach((elem) => {
+  elem.addEventListener("click", (e) => {
+    modal.classList.add("cmstl-hide");
+    navbar.classList.remove("cmstl-hide");
+
+    setTimeout(() => {
+      let expanding_div = document.querySelector(
+        ".cmstl-expanding-div-expanded"
+      );
+      expanding_div.classList.remove("cmstl-expanding-div-expanded");
+    }, 50);
+  });
+});
+
+// ---- open modal and hide nav bar
+
+const elements_that_open_modal = [document.querySelector(".cmstl-menu-toggle")];
+
+elements_that_open_modal.forEach((elem) => {
+  elem.addEventListener("click", (e) => {
+    let expanding_div = e.target.querySelector(".cmstl-expanding-div");
+    expanding_div.classList.add("cmstl-expanding-div-expanded");
+
+    setTimeout(() => {
+      modal.classList.remove("cmstl-hide");
+      navbar.classList.add("cmstl-hide");
+    }, 300);
+  });
 });

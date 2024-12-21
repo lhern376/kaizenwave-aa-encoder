@@ -132,3 +132,23 @@ body {
     transform: translate(0, -50%);
   }
 }
+
+/* Test clip-path and modal animation */
+
+.min-height-100 {
+  min-height: 100vh;
+}
+
+.pos-relative {
+  position: relative;
+  background-color: bisque;
+}
+
+.circle {
+  width: 50px;
+  height: 500px;
+
+  background-color: blue;
+
+  /* clip-path: circle(50%); */
+}
