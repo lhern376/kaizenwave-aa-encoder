@@ -421,20 +421,24 @@ setSizeProp(); // run the function in case page is reloaded
 
 // -------- grab all the elements that interact with modal and implement click event
 
-const modal = document.querySelector(".cmstl-modal-menu");
+const body = document.querySelector("body"); // used to disable scrolling
+const modal_menu = document.querySelector(".cmstl-modal-menu.cmstl-menu");
+const modal_form = document.querySelector(".cmstl-modal-menu.cmstl-form");
 const navbar = document.querySelector(".cmstl-nav-wrapper");
 
 // ---- close modals
 
-const elements_that_close_modal = [
-  document.querySelector(".cmstl-modal-close-btn"),
+const elements_that_close_modal_menu = [
+  document.querySelector(".cmstl-menu .cmstl-modal-close-btn"),
   ...document.querySelectorAll(".cmstl-modal-menu-wrapper a"),
 ];
 
-elements_that_close_modal.forEach((elem) => {
+elements_that_close_modal_menu.forEach((elem) => {
   elem.addEventListener("click", (e) => {
-    modal.classList.add("cmstl-hide");
+    modal_menu.classList.add("cmstl-hide");
     navbar.classList.remove("cmstl-hide");
+
+    body.style.overflow = "visible";
 
     setTimeout(() => {
       let expanding_div = document.querySelector(
@@ -445,17 +449,60 @@ elements_that_close_modal.forEach((elem) => {
   });
 });
 
-// ---- open modal and hide nav bar
+const elements_that_close_modal_form = [
+  document.querySelector(".cmstl-form .cmstl-modal-close-btn"),
+  modal_form,
+];
 
-const elements_that_open_modal = [document.querySelector(".cmstl-menu-toggle")];
+elements_that_close_modal_form.forEach((elem) => {
+  elem.addEventListener("click", (e) => {
+    modal_form.classList.add("cmstl-hide");
+    navbar.classList.remove("cmstl-hide");
 
-elements_that_open_modal.forEach((elem) => {
+    body.style.overflow = "visible";
+
+    setTimeout(() => {
+      let expanding_div = document.querySelector(
+        ".cmstl-expanding-div-expanded"
+      );
+      expanding_div.classList.remove("cmstl-expanding-div-expanded");
+    }, 50);
+  });
+});
+
+// ---- open modals and hide nav bar and disable scrolling
+
+const elements_that_open_modal_menu = [
+  document.querySelector(".cmstl-menu-toggle"),
+];
+
+elements_that_open_modal_menu.forEach((elem) => {
   elem.addEventListener("click", (e) => {
     let expanding_div = e.target.querySelector(".cmstl-expanding-div");
     expanding_div.classList.add("cmstl-expanding-div-expanded");
 
+    body.style.overflow = "hidden";
+
     setTimeout(() => {
-      modal.classList.remove("cmstl-hide");
+      modal_menu.classList.remove("cmstl-hide");
+      navbar.classList.add("cmstl-hide");
+    }, 300);
+  });
+});
+
+const elements_that_open_modal_form = [
+  ...document.querySelectorAll(".cmstl-mail"),
+];
+
+elements_that_open_modal_form.forEach((elem) => {
+  elem.addEventListener("click", (e) => {
+    let expanding_div = e.target.querySelector(".cmstl-expanding-div");
+    expanding_div.classList.add("cmstl-expanding-div-expanded");
+
+    body.style.overflow = "hidden";
+
+    setTimeout(() => {
+      modal_form.classList.remove("cmstl-hide");
       navbar.classList.add("cmstl-hide");
     }, 300);
   });
