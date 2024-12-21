@@ -260,19 +260,6 @@ h6 {
   font-weight: 700;
   letter-spacing: 0.0192rem;
   padding-left: 2rem;
-
-  /* transform: translate(10rem, -10rem);
-  opacity: 0;
-
-  transition-property: transform, opacity;
-  transition-duration: 500ms;
-  transition-timing-function: linear;
-  transition-delay: 1000ms; */
-}
-/* .cmstl-modal-menu-nav-anim */
-.cmstl-modal-menu-wrapper div.cmstl-modal-menu-nav-anim {
-  /* transform: translate(0, 0);
-  opacity: 1; */
 }
 
 .cmstl-modal-menu-wrapper div a:hover {

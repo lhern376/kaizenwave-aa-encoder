@@ -433,30 +433,22 @@ const elements_that_close_modal_menu = [
   ...document.querySelectorAll(".cmstl-modal-menu-wrapper a"),
 ];
 
-elements_that_close_modal_menu.forEach((elem) => {
-  elem.addEventListener("click", (e) => {
-    modal_menu.classList.add("cmstl-hide");
-    navbar.classList.remove("cmstl-hide");
-
-    body.style.overflow = "visible";
-
-    setTimeout(() => {
-      let expanding_div = document.querySelector(
-        ".cmstl-expanding-div-expanded"
-      );
-      expanding_div.classList.remove("cmstl-expanding-div-expanded");
-    }, 50);
-  });
-});
-
 const elements_that_close_modal_form = [
   document.querySelector(".cmstl-form .cmstl-modal-close-btn"),
   modal_form,
 ];
 
-elements_that_close_modal_form.forEach((elem) => {
-  elem.addEventListener("click", (e) => {
-    modal_form.classList.add("cmstl-hide");
+document.addEventListener("click", (e) => {
+  closeModal(e, elements_that_close_modal_menu, modal_menu, navbar, body);
+});
+
+document.addEventListener("click", (e) => {
+  closeModal(e, elements_that_close_modal_form, modal_form, navbar, body);
+});
+
+const closeModal = (e, close_elements, modal, navbar, body) => {
+  if (close_elements.includes(e.target)) {
+    modal.classList.add("cmstl-hide");
     navbar.classList.remove("cmstl-hide");
 
     body.style.overflow = "visible";
@@ -465,10 +457,11 @@ elements_that_close_modal_form.forEach((elem) => {
       let expanding_div = document.querySelector(
         ".cmstl-expanding-div-expanded"
       );
+      console.log(expanding_div);
       expanding_div.classList.remove("cmstl-expanding-div-expanded");
     }, 50);
-  });
-});
+  }
+};
 
 // ---- open modals and hide nav bar and disable scrolling
 
@@ -476,34 +469,28 @@ const elements_that_open_modal_menu = [
   document.querySelector(".cmstl-menu-toggle"),
 ];
 
-elements_that_open_modal_menu.forEach((elem) => {
-  elem.addEventListener("click", (e) => {
-    let expanding_div = e.target.querySelector(".cmstl-expanding-div");
-    expanding_div.classList.add("cmstl-expanding-div-expanded");
-
-    body.style.overflow = "hidden";
-
-    setTimeout(() => {
-      modal_menu.classList.remove("cmstl-hide");
-      navbar.classList.add("cmstl-hide");
-    }, 300);
-  });
-});
-
 const elements_that_open_modal_form = [
   ...document.querySelectorAll(".cmstl-mail"),
 ];
 
-elements_that_open_modal_form.forEach((elem) => {
-  elem.addEventListener("click", (e) => {
+document.addEventListener("click", (e) => {
+  openModal(e, elements_that_open_modal_menu, modal_menu, navbar, body);
+});
+
+document.addEventListener("click", (e) => {
+  openModal(e, elements_that_open_modal_form, modal_form, navbar, body);
+});
+
+const openModal = (e, open_elements, modal, navbar, body) => {
+  if (open_elements.includes(e.target)) {
     let expanding_div = e.target.querySelector(".cmstl-expanding-div");
     expanding_div.classList.add("cmstl-expanding-div-expanded");
 
     body.style.overflow = "hidden";
 
     setTimeout(() => {
-      modal_form.classList.remove("cmstl-hide");
+      modal.classList.remove("cmstl-hide");
       navbar.classList.add("cmstl-hide");
     }, 300);
-  });
-});
+  }
+};
