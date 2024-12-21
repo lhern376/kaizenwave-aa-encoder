@@ -300,6 +300,7 @@ h6 {
 .cmstl-expanding-div-expanded {
   /* scale 5px to twice the size of the largest side of the screen (calculation is somewhat close lol) */
   scale: calc(1.5 * var(--size) / 5);
+  z-index: 3000;
 }
 
 /* ---------------------------------------------- Header Styles */
