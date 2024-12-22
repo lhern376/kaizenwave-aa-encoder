@@ -89,6 +89,13 @@
   background-color: var(--cmstl-f-color);
 }
 
+* :focus {
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 0.5rem var(--cmstl-bg-color-footer),
+    0 0 0 1rem var(--cmstl-f-color-link-hover);
+}
+
 html {
   /* background-color: red; */
 }
