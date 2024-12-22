@@ -53,6 +53,9 @@
   /* --cmstl-f-color-link-hover: rgb(93, 122, 219); */
   /* --cmstl-f-color-link-hover: rgb(100, 165, 223); */
 
+  --cmstl-f-color-selection: rgb(0, 49, 127);
+  --cmstl-bg-color-selection: rgb(100, 165, 223);
+
   /* Blur */
   --cmstl-blur: blur(4px);
   --cmstl-blur-lg: blur(16px);
@@ -78,6 +81,14 @@
   /* outline: 1px solid pink; */
 }
 
+* ::selection {
+  /* color: var(--cmstl-f-color);
+  background-color: var(--cmstl-f-color-link-hover); */
+
+  color: var(--cmstl-f-color-link-hover);
+  background-color: var(--cmstl-f-color);
+}
+
 html {
   /* background-color: red; */
 }
@@ -94,7 +105,9 @@ body {
   line-height: 2rem;
 
   overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
   scrollbar-color: var(--scroll-bar-thumb) var(--scroll-bar-track);
+  overflow-x: hidden;
 
   /* normalize */
   margin: 0;
@@ -220,6 +233,8 @@ h6 {
   z-index: 2000;
   position: fixed;
   inset: 0;
+  /* overflow-x: hidden;
+  overscroll-behavior-x: none; */
 
   backdrop-filter: var(--cmstl-blur-lg);
   opacity: 1;
@@ -235,13 +250,16 @@ h6 {
   opacity: 0;
 }
 
-.cmstl-modal-close-btn {
+.cmstl-modal-close-btn-wrapper {
   display: flex;
   justify-content: end;
   align-items: end;
-  cursor: pointer;
 
   margin-bottom: 3rem;
+}
+
+.cmstl-modal-close-btn {
+  cursor: pointer;
 }
 
 .cmstl-modal-close-btn:hover {
@@ -280,8 +298,10 @@ h6 {
   /* backdrop-filter: var(--cmstl-blur-lg); */
 
   background-color: rgba(0, 0, 0, 0.8);
-  width: 5px;
-  height: 5px;
+  /* width: 5px;
+  height: 5px; */
+  width: 1px;
+  height: 1px;
   border-radius: 100%;
 
   position: absolute;
@@ -299,8 +319,13 @@ h6 {
 
 .cmstl-expanding-div-expanded {
   /* scale 5px to twice the size of the largest side of the screen (calculation is somewhat close lol) */
-  scale: calc(1.5 * var(--size) / 5);
+  scale: calc(5 * (2 * var(--size) / 5));
   z-index: 3000;
+}
+
+/* DOES NOT WORK - overrites opacity 0 from fixed-controls when it reaches 'say-hello' section */
+.cmstl-fixed-controls .cmstl-mail .cmstl-expanding-div {
+  opacity: 1;
 }
 
 /* ---------------------------------------------- Header Styles */
@@ -349,7 +374,7 @@ h6 {
 
   scale: 1;
 
-  transition-property: visibility, rotate, scale;
+  transition-property: visibility, rotate, scale, translate;
   /* transition-duration: 70ms; */
   transition-duration: 400ms;
   transition-timing-function: ease-in;
@@ -360,6 +385,8 @@ h6 {
   /* rotate: 3turn; */
   rotate: 180deg;
   scale: 0.2;
+  translate: -40% 0;
+  transition-duration: 100ms;
 }
 
 .cmstl-site-logo-text {
@@ -380,7 +407,7 @@ h6 {
   left: 0;
   width: max-content;
 
-  transform: translate(10%, -50%);
+  transform: translate(0, -50%);
   transform-origin: left;
 
   transition-property: scale, opacity;
@@ -405,6 +432,11 @@ h6 {
   cursor: pointer;
   display: none;
 
+  /* backdrop filter */
+  backdrop-filter: var(--cmstl-blur);
+  padding-block: 0.7rem;
+  border-radius: 0.7rem;
+
   position: relative;
 }
 
@@ -418,7 +450,7 @@ h6 {
   align-items: center;
 
   /* font-size: 2.2rem; */
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   letter-spacing: 0.1rem;
 
   /* backdrop filter */
@@ -430,7 +462,7 @@ h6 {
 .cmstl-responsive-menu ul li {
   /* padding-inline: 1.5rem; */
   /* padding-inline: 2rem; */
-  padding-inline: 3rem;
+  padding-inline: 2.5rem;
 }
 
 .cmstl-responsive-menu ul li a:hover {
@@ -455,6 +487,7 @@ h6 {
 
   /* background-position: center; */
   background-position: 50% 50%;
+  background-position: bottom;
 }
 
 .cmstl-background-noise {
@@ -463,7 +496,7 @@ h6 {
 
   z-index: -500;
 
-  opacity: 0.01;
+  opacity: 0.005;
 
   background-image: url("media/noise.gif");
   background-attachment: fixed;

@@ -24,25 +24,25 @@
  *
  */
 
-(function () {
-  // Add event listener
-  document.addEventListener("mousemove", parallax);
-  const elem = document.querySelector(".cmstl-background-image");
-  // Magic happens here
-  function parallax(e) {
-    let _w = window.innerWidth / 2;
-    let _h = window.innerHeight / 2;
-    let _mouseX = e.clientX;
-    let _mouseY = e.clientY;
-    let _depth1 = `${50 - (_mouseX - _w) * 0.01}% ${
-      50 - (_mouseY - _h) * 0.01
-    }%`;
+// (function () {
+//   // Add event listener
+//   document.addEventListener("mousemove", parallax);
+//   const elem = document.querySelector(".cmstl-background-image");
+//   // Magic happens here
+//   function parallax(e) {
+//     let _w = window.innerWidth / 2;
+//     let _h = window.innerHeight / 2;
+//     let _mouseX = e.clientX;
+//     let _mouseY = e.clientY;
+//     let _depth1 = `${50 - (_mouseX - _w) * 0.01}% ${
+//       50 - (_mouseY - _h) * 0.01
+//     }%`;
 
-    let x = `${_depth1}`;
-    // console.log(x);
-    elem.style.backgroundPosition = x;
-  }
-})();
+//     let x = `${_depth1}`;
+//     // console.log(x);
+//     elem.style.backgroundPosition = x;
+//   }
+// })();
 
 /**
  *
@@ -371,7 +371,7 @@ const say_hello_observer = new IntersectionObserver((entries) => {
     );
 
     if (entry.isIntersecting && entry.target !== say_hello_section)
-      // continue observing section
+      // do not unobserve the section
       say_hello_observer.unobserve(entry.target);
   });
 });
@@ -425,6 +425,57 @@ const body = document.querySelector("body"); // used to disable scrolling
 const modal_menu = document.querySelector(".cmstl-modal-menu.cmstl-menu");
 const modal_form = document.querySelector(".cmstl-modal-menu.cmstl-form");
 const navbar = document.querySelector(".cmstl-nav-wrapper");
+const expanding_div_menu = document.querySelector(
+  ".cmstl-menu-toggle .cmstl-expanding-div"
+);
+const expanding_div_form = document.querySelector(
+  ".cmstl-fixed-controls .cmstl-expanding-div"
+);
+
+// ---- open modals and hide nav bar and disable scrolling
+
+const elements_that_open_modal_menu = [
+  document.querySelector(".cmstl-menu-toggle"),
+];
+
+const elements_that_open_modal_form = [
+  ...document.querySelectorAll(".cmstl-mail"),
+];
+
+document.addEventListener("click", (e) => {
+  openModal(
+    e,
+    elements_that_open_modal_menu,
+    modal_menu,
+    expanding_div_menu,
+    navbar,
+    body
+  );
+});
+
+document.addEventListener("click", (e) => {
+  openModal(
+    e,
+    elements_that_open_modal_form,
+    modal_form,
+    expanding_div_form,
+    navbar,
+    body
+  );
+});
+
+const openModal = (e, open_elements, modal, expanding_div, navbar, body) => {
+  if (open_elements.includes(e.target)) {
+    expanding_div.classList.add("cmstl-expanding-div-expanded");
+
+    body.style.overflow = "hidden";
+
+    setTimeout(() => {
+      modal.classList.remove("cmstl-hide");
+      navbar.classList.add("cmstl-hide");
+    }, 300);
+  }
+};
 
 // ---- close modals
 
@@ -457,40 +508,8 @@ const closeModal = (e, close_elements, modal, navbar, body) => {
       let expanding_div = document.querySelector(
         ".cmstl-expanding-div-expanded"
       );
-      console.log(expanding_div);
+      // console.log(expanding_div);
       expanding_div.classList.remove("cmstl-expanding-div-expanded");
     }, 50);
-  }
-};
-
-// ---- open modals and hide nav bar and disable scrolling
-
-const elements_that_open_modal_menu = [
-  document.querySelector(".cmstl-menu-toggle"),
-];
-
-const elements_that_open_modal_form = [
-  ...document.querySelectorAll(".cmstl-mail"),
-];
-
-document.addEventListener("click", (e) => {
-  openModal(e, elements_that_open_modal_menu, modal_menu, navbar, body);
-});
-
-document.addEventListener("click", (e) => {
-  openModal(e, elements_that_open_modal_form, modal_form, navbar, body);
-});
-
-const openModal = (e, open_elements, modal, navbar, body) => {
-  if (open_elements.includes(e.target)) {
-    let expanding_div = e.target.querySelector(".cmstl-expanding-div");
-    expanding_div.classList.add("cmstl-expanding-div-expanded");
-
-    body.style.overflow = "hidden";
-
-    setTimeout(() => {
-      modal.classList.remove("cmstl-hide");
-      navbar.classList.add("cmstl-hide");
-    }, 300);
   }
 };
