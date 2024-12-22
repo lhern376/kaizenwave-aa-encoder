@@ -1,5 +1,7 @@
 // Index
 
+//  * ---- Reveal Wheel
+
 //  * ---- Background-image movement
 
 //  * ---- Animate logo on scroll
@@ -15,6 +17,48 @@
 //  * ---- Modal Animation
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ *
+ * ---- Reveal Wheel
+ *
+ *  - turn wheels @40% scrolled from top
+ *
+ */
+
+window.addEventListener("resize", setSizePropRevealWheel);
+
+function setSizePropRevealWheel() {
+  const htmlElement = document.documentElement;
+  const width = htmlElement.clientWidth;
+  const height = htmlElement.clientHeight;
+
+  htmlElement.style.setProperty("--width", width);
+  htmlElement.style.setProperty("--height", height);
+}
+setSizePropRevealWheel();
+
+function turnWheels() {
+  const ws = document.querySelectorAll(".cmstl-background-reveal-wheel");
+
+  const height = document.documentElement.clientHeight;
+  ws.forEach((w) => {
+    w.style.rotate = "-360deg";
+    w.style.transform = `translateX(calc(7*3.14*${height / 2}px))`;
+  });
+}
+
+const targetRatioWheels = 0.4; // 40% of screen scrolled
+
+window.addEventListener("scroll", () => {
+  let pixelsFromTop = window.scrollY;
+  let screenHeight = document.documentElement.clientHeight; // screen height rather than dom height
+
+  if (pixelsFromTop / screenHeight >= targetRatioWheels) {
+    console.log("here");
+    turnWheels();
+  }
+});
 
 /**
  *
@@ -407,9 +451,9 @@ say_hello_arr.forEach((entry) => {
 // set and track on resize a custom property that updates
 // based on max(screenWidth, screenHeight) (use this property on the expanding-div transition)
 
-window.addEventListener("resize", setSizeProp);
+window.addEventListener("resize", setSizePropExpandingDiv);
 
-function setSizeProp() {
+function setSizePropExpandingDiv() {
   const htmlElement = document.documentElement;
   const size = Math.max(htmlElement.clientHeight, htmlElement.clientWidth);
 
@@ -417,7 +461,7 @@ function setSizeProp() {
   htmlElement.style.setProperty("--size", size * 2); // whatever it's value, double it
 }
 
-setSizeProp(); // run the function in case page is reloaded
+setSizePropExpandingDiv(); // run the function in case page is reloaded
 
 // -------- grab all the elements that interact with modal and implement click event
 

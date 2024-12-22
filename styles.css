@@ -66,10 +66,12 @@
 
   scroll-behavior: smooth;
 
-  /* Custom Properties */
+  /* Custom Properties Created and Tracked with Javascript */
   /* initialize to 0 in case the page is reloaded */
-  --scroll: 0;
-  --size: 0;
+  --scroll: 0; /* viewport */
+  --size: 0; /* max(w, h) viewport */
+  --width: 0; /* viewport */
+  --height: 0; /* viewport */
 
   /* Normalize */
   font-size: 10px;
@@ -509,6 +511,70 @@ h6 {
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.cmstl-background-reveal-wheel {
+  width: calc(2px * var(--width));
+  height: calc(2px * var(--height));
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  border-top-left-radius: 5%;
+
+  translate: 10% 10%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  transition: transform 7s ease-in-out, rotate 7s ease-in-out;
+}
+
+.cmstl-w0 {
+  background-color: rgb(0, 28, 77);
+  z-index: 7;
+}
+
+.cmstl-w1 {
+  /* background-color: hsl(204, 70%, 53%); */
+  background-color: rgb(6 54 134);
+  z-index: 6;
+  transition-delay: 50ms;
+}
+.cmstl-w2 {
+  /* background-color: hsl(228, 70%, 53%); */
+  background-color: rgb(23 67 154);
+  z-index: 5;
+  transition-delay: 100ms;
+}
+.cmstl-w3 {
+  /* background-color: hsl(242, 70%, 53%); */
+  background-color: rgb(48 87 185);
+  z-index: 4;
+  transition-delay: 150ms;
+}
+.cmstl-w4 {
+  /* background-color: hsl(254, 70%, 53%); */
+  background-color: rgb(76 130 208);
+  z-index: 3;
+  transition-delay: 200ms;
+}
+.cmstl-w5 {
+  /* background-color: hsl(274, 70%, 53%); */
+  background-color: rgb(101 167 224);
+  z-index: 2;
+  transition-delay: 250ms;
+}
+.cmstl-w6 {
+  /* background-color: hsl(294, 70%, 53%); */
+  background-color: rgb(123 201 239);
+  z-index: 1;
+  transition-delay: 300ms;
+}
+
+/* first section wrapper needs this so its text shows over the reveal wheels */
+.cmstl-z-index-100 {
+  position: relative;
+  z-index: 100;
 }
 
 .cmstl-hero {
