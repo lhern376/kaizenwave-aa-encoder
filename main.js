@@ -55,7 +55,6 @@ window.addEventListener("scroll", () => {
   let screenHeight = document.documentElement.clientHeight; // screen height rather than dom height
 
   if (pixelsFromTop / screenHeight >= targetRatioWheels) {
-    console.log("here");
     turnWheels();
   }
 });

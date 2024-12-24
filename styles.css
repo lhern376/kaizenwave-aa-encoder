@@ -514,11 +514,20 @@ h6 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("media/digital-dark-4-unsplash.jpg");
+  background-image: url("media/smooth-2.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
-  z-index: -1;
+  background-position: top;
+  z-index: -1000;
+}
+
+.cmstl-parallax.cmstl-what-we-do-parallax {
+  background-image: url("media/smooth-3.jpg");
+}
+
+.cmstl-parallax.cmstl-say-hello-parallax {
+  background-image: url("media/smooth-4.jpg");
 }
 
 /* mobile backgrounds END */
@@ -529,12 +538,13 @@ h6 {
 
   z-index: -500;
 
-  opacity: 0.005;
+  /* opacity: 0.005; */
+  opacity: 0.05;
 
   background-image: url("media/noise.gif");
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-size: auto;
+  background-repeat: repeat;
 }
 
 .cmstl-background-reveal-wheel {
