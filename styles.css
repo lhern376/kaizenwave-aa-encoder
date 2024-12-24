@@ -306,7 +306,7 @@ h6 {
   /* the filter is actually magnified when scaling the element so can't use */
   /* backdrop-filter: var(--cmstl-blur-lg); */
 
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   /* width: 5px;
   height: 5px; */
   width: 1px;
@@ -482,22 +482,46 @@ h6 {
 
 /* --------------- Hero */
 
-.cmstl-background-image {
+/* .cmstl-background-image {
   position: absolute;
   inset: 0;
 
   z-index: -1000;
 
-  background-image: url("media/digital-dark-4-unsplash.jpg");
-  /* background-image: url("media/background-img-2.png"); */
+  background-image: url("media/digital-dark-3-unsplash.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
 
-  /* background-position: center; */
-  background-position: 50% 50%;
   background-position: bottom;
+} */
+
+/* mobile backgrounds */
+
+.cmstl-section-wrapper {
+  /* background-color: var(--cmstl-bg-color); */
 }
+
+.cmstl-parallax-container {
+  position: relative;
+
+  overflow: hidden;
+}
+
+.cmstl-parallax {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("media/digital-dark-4-unsplash.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: bottom;
+  z-index: -1;
+}
+
+/* mobile backgrounds END */
 
 .cmstl-background-noise {
   position: absolute;
@@ -610,6 +634,10 @@ h6 {
 
 .cmstl-hey-there {
   margin-top: 46rem;
+
+  /* sets section-wrapper styles back */
+  max-width: 153.6rem;
+  margin-inline: auto;
 }
 
 .cmstl-hey-there h1:nth-child(2) {
@@ -725,6 +753,10 @@ h6 {
 
   display: flex;
   align-items: center;
+
+  /* sets section-wrapper styles back */
+  max-width: 153.6rem;
+  margin-inline: auto;
 }
 
 /* .cmstl-motto .cmstl-fw-lg {

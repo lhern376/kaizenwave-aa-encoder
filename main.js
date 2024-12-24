@@ -48,7 +48,7 @@ function turnWheels() {
   });
 }
 
-const targetRatioWheels = 0.4; // 40% of screen scrolled
+const targetRatioWheels = 0.1; // 40% of screen scrolled
 
 window.addEventListener("scroll", () => {
   let pixelsFromTop = window.scrollY;
