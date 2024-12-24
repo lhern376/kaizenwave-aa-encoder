@@ -244,6 +244,10 @@ setInterval(() => {
 const sections = document.querySelectorAll(".cmstl-section-wrapper");
 
 document.addEventListener("mousemove", (e) => {
+  // Only on desktop
+  let mql = window.matchMedia("(max-width: 1280px)");
+  if (mql.matches) return;
+
   let window_w = window.innerWidth;
   let mouse_x = e.clientX;
 

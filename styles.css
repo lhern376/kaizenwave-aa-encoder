@@ -34,7 +34,40 @@
 
 /* ---------------------------------------------- General Styles */
 
-@import url("https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro");
+/* @import url("https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro"); */
+
+@font-face {
+  font-family: "Neue Haas Grotesk Display Pro";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Neue Haas Grotesk Display Pro"),
+    url("https://fonts.cdnfonts.com/s/47998/NeueHaasDisplayLight.woff")
+      format("woff");
+}
+@font-face {
+  font-family: "Neue Haas Grotesk Display Pro";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Neue Haas Grotesk Display Pro"),
+    url("https://fonts.cdnfonts.com/s/47998/NeueHaasDisplayLightItalic.woff")
+      format("woff");
+}
+@font-face {
+  font-family: "Neue Haas Grotesk Display Pro";
+  font-style: normal;
+  font-weight: 600;
+  src: local("Neue Haas Grotesk Display Pro"),
+    url("https://fonts.cdnfonts.com/s/47998/NeueHaasDisplayMediu.woff")
+      format("woff");
+}
+@font-face {
+  font-family: "Neue Haas Grotesk Display Pro";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Neue Haas Grotesk Display Pro"),
+    url("https://fonts.cdnfonts.com/s/47998/NeueHaasDisplayBold.woff")
+      format("woff");
+}
 
 :root {
   /* Background Colors */
@@ -72,6 +105,9 @@
   --size: 0; /* max(w, h) viewport */
   --width: 0; /* viewport */
   --height: 0; /* viewport */
+
+  /* stops highlighting of interactive elements on mobile (non standard, bad practice?) */
+  -webkit-tap-highlight-color: transparent;
 
   /* Normalize */
   font-size: 10px;
@@ -269,6 +305,8 @@ h6 {
 
 .cmstl-modal-close-btn {
   cursor: pointer;
+
+  user-select: none;
 }
 
 .cmstl-modal-close-btn:hover {
@@ -517,7 +555,8 @@ h6 {
   background-image: url("media/smooth-2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
+  background-attachment: scroll;
   background-position: top;
   z-index: -1000;
 }
@@ -814,7 +853,7 @@ h6 {
   background-color: var(--cmstl-f-color-link-hover);
 
   transition-property: background-color;
-  transition-duration: 300ms;
+  transition-duration: 600ms;
   transition-timing-function: linear;
 }
 
@@ -831,6 +870,10 @@ h6 {
 
 .cmstl-phone {
   stroke: var(--cmstl-f-color);
+
+  transition-property: stroke;
+  transition-duration: 400ms;
+  transition-timing-function: linear;
 }
 
 .cmstl-phone:hover {
@@ -840,6 +883,10 @@ h6 {
 .cmstl-mail {
   /* to make the modal animation work */
   position: relative;
+
+  transition-property: color;
+  transition-duration: 500ms;
+  transition-timing-function: linear;
 }
 
 .cmstl-mail:hover {
@@ -930,7 +977,7 @@ h6 {
 
 /* ---------------------------------------------- Media Queries */
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   .cmstl-section-wrapper {
     /* - provides section padding */
     /* - responsive width */
@@ -986,7 +1033,7 @@ h6 {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   /* --------------- Section Layout */
 
   .cmstl-section-wrapper {
@@ -1070,17 +1117,17 @@ h6 {
     font-size: 3.5rem;
     line-height: 4rem;
     letter-spacing: -0.1536rem;
+
+    padding-bottom: 16rem;
   }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 424px) {
   .cmstl-fw-xl {
     font-size: 8.5rem;
     line-height: 8.44rem;
   }
-}
 
-@media screen and (max-width: 425px) {
   /* Helps hero text not overflow */
   .cmstl-hero .cmstl-fw-lg {
     font-size: 3rem;
@@ -1089,7 +1136,7 @@ h6 {
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 319px) {
   .cmstl-fw-xl {
     font-size: 6.5rem;
     line-height: 5.44rem;
