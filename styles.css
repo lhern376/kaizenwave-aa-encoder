@@ -333,7 +333,42 @@ h6 {
 
 /* Form */
 
-.cmstl-modal-form--wrapper {
+.cmstl-modal-form-wrapper {
+  position: absolute;
+  inset: 0;
+  padding: 3.84rem;
+  /* padding: 0; screen max-width: 767px  */
+
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.cmstl-modal-form-content-wrapper {
+  /* height: 100%; */
+  height: max-content;
+  max-width: 80rem;
+  /* width: 95%; screen max-width: 767px */
+
+  flex: 1;
+  border-radius: 1rem;
+  background-color: var(--cmstl-bg-color);
+}
+
+.cmstl-form .cmstl-modal-close-btn {
+  padding-top: 1rem;
+  padding-right: 1rem;
+}
+
+/* wpform wrapper */
+.cmstl-form-content {
+  padding: 5.76rem;
+  /* padding-inline: 1rem; screen max-width: 767px */
+  /* padding-bottom: 1.44rem; screen max-width: 767px */
+
+  padding-top: 2.4rem;
 }
 
 /* Modal Pop Up Animation */
@@ -367,7 +402,7 @@ h6 {
 .cmstl-expanding-div-expanded {
   /* scale 5px to twice the size of the largest side of the screen (calculation is somewhat close lol) */
   scale: calc(5 * (2 * var(--size) / 5));
-  z-index: 3000;
+  /* z-index: 3000; */
 }
 
 /* DOES NOT WORK - overrites opacity 0 from fixed-controls when it reaches 'say-hello' section */

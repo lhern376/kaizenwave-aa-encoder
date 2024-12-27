@@ -16,6 +16,8 @@
 
 //  * ---- Modal Animation
 
+//  * ---- Add WPForm Container
+
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
 
 /**
@@ -206,7 +208,7 @@ document.addEventListener("mouseover", (e) => {
       ${siteColor} 0px 0px ${num4}px, ${siteColor} 0px 0px ${num5}px, ${siteColor} 0px 0px ${num6}px, ${siteColor} 0px 0px ${num7}px, ${siteColor} 0px 0px ${num8}px`;
 
       e.target.style.boxShadow = boxShadow;
-    }, 100); // Interval time in milliseconds (adjust as needed)
+    }, 30); // Interval time in milliseconds (adjust as needed)
 
     e.target.addEventListener("mouseout", () => {
       clearInterval(intervalId);
@@ -533,7 +535,7 @@ const elements_that_close_modal_menu = [
 
 const elements_that_close_modal_form = [
   document.querySelector(".cmstl-form .cmstl-modal-close-btn"),
-  modal_form,
+  document.querySelector(".cmstl-modal-form-wrapper"),
 ];
 
 document.addEventListener("click", (e) => {
@@ -560,3 +562,17 @@ const closeModal = (e, close_elements, modal, navbar, body) => {
     }, 50);
   }
 };
+
+/**
+ *
+ * ---- Add WPForm Container
+ *
+ *  - adds wpfrom container (created in WordPress) from hidden (cmstl-hide) with wpform containded inside
+ *
+ */
+
+const form_wrapper = document.querySelector("cmstl-modal-form-content-wrapper");
+const form_content_wrapper = document.querySelector(".cmstl-form-content");
+
+form_wrapper.appendChild(form_content_wrapper);
+form_content_wrapper.classList.remove("cmstl-hide");
