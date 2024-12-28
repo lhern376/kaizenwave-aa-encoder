@@ -773,6 +773,47 @@ h6 {
   transform: translateY(0);
 }
 
+#cmid-hey-there .cmstl-fw-lg.cmstl-reduce-opacity {
+  opacity: 0;
+}
+
+/* three.js text animation */
+
+#cmid-hey-there {
+  position: relative;
+}
+
+#canvas-wrapper {
+  width: 100%;
+
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  /* transform: translate(0, -50%); */
+  /* transform: translate(100%, -50%); */
+  transform: translate(100%, 0);
+
+  opacity: 0;
+
+  transition-property: transform, opacity;
+  transition-duration: 500ms;
+  transition-timing-function: ease-in;
+}
+
+#canvas-wrapper.cmstl-canvas-transition {
+  /* transform: translate(0, -50%); */
+  transform: translate(0, 0);
+  opacity: 1;
+
+  /* transition-property: transform, opacity;
+  transition-duration: 500ms;
+  transition-timing-function: ease-in; */
+}
+
+#canvas-wrapper .canvas {
+  /* width: 100%; */
+}
+
 /* --------------- What We Do */
 
 .cmstl-what-we-do {
@@ -1148,6 +1189,12 @@ h6 {
   .cmstl-fixed-controls .cmstl-contact svg {
     width: 1.9rem;
     height: 1.9rem;
+  }
+
+  /* --------------- Three.js anim */
+
+  #canvas-wrapper {
+    width: 100%;
   }
 }
 
