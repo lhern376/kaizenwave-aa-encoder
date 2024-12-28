@@ -18,6 +18,8 @@
 
 //  * ---- Add WPForm Container
 
+//  * ---- Background Parallax
+
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
 
 /**
@@ -571,8 +573,33 @@ const closeModal = (e, close_elements, modal, navbar, body) => {
  *
  */
 
-const form_wrapper = document.querySelector("cmstl-modal-form-content-wrapper");
-const form_content_wrapper = document.querySelector(".cmstl-form-content");
+// const form_wrapper = document.querySelector("cmstl-modal-form-content-wrapper");
+// const form_content_wrapper = document.querySelector(".cmstl-form-content");
 
-form_wrapper.appendChild(form_content_wrapper);
-form_content_wrapper.classList.remove("cmstl-hide");
+// form_wrapper.appendChild(form_content_wrapper);
+// form_content_wrapper.classList.remove("cmstl-hide");
+
+/**
+ *
+ * ---- Background Parallax
+ *
+ *  - set up prop
+ *
+ */
+
+window.addEventListener("scroll", setParallaxScrollProp);
+window.addEventListener("resize", setParallaxScrollProp);
+
+function setParallaxScrollProp() {
+  const htmlElement = document.documentElement;
+  // document.documentElement.scrollTop returns window.scrollY (special case of .scrollTop when it is the property of the root/html)
+  const scrollFromTop = htmlElement.scrollTop;
+  const windowHeight = window.innerHeight;
+  const domHeight = document.body.offsetHeight;
+
+  const percentScrolled = scrollFromTop / (domHeight - windowHeight);
+  console.log(percentScrolled * 100);
+  htmlElement.style.setProperty("--parallax-scroll", percentScrolled * 100);
+}
+
+setParallaxScrollProp(); // run the function in case page is reloaded
