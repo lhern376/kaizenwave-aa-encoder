@@ -654,19 +654,24 @@ setParallaxScrollProp(); // run the function in case page is reloaded
 // const colorBg = "hotpink"; // #ff69b4
 const colorBg = "rgba(13,13,13,0)";
 // const colorTypo = "#ff49a4"; // dark pink
-// const colorTypo = "rgb(6,54,134)";
-// const colorTypo = "rgb(123, 201, 239)";
-// const colorTypo = "rgb(23,67,154)";
 const colorTypo = "rgb(93, 155, 219)";
+// const colorTypo = "rgb(94, 87,183)";
 
 const nearDist = 0.1;
 // const nearDist = 100;
 const farDist = 10000;
 // const farDist = 1000;
 
+// Size of text depending on screen size (only works on refresh, not responsive to resizing) (CUSTOM)
+const mq_text_size = window.matchMedia("(max-width: 650px)");
+let text_size = 75;
+if (mq_text_size.matches) text_size = 110;
+// (CUSTOM)
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
-  75,
+  // 75, // text size, replaced by variable below
+  text_size,
   window.innerWidth / window.innerHeight,
   nearDist,
   farDist

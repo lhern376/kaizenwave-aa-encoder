@@ -451,7 +451,7 @@ h6 {
   /* height: 4.5rem; */
   width: 6.5rem;
   height: 6.5rem;
-  background-image: url("media/Logo_KaizenWave_Imagotipo_FullColor (1).png");
+  background-image: url("media/Logo_KaizenWave_200.png");
   background-size: contain;
   background-repeat: no-repeat;
 
@@ -582,7 +582,8 @@ h6 {
   overflow: hidden;
 }
 
-.cmstl-parallax {
+/* To be deleted */
+.cmstl-parallax-takethissuffixout {
   position: absolute;
   top: 0;
   left: 0;
@@ -601,12 +602,33 @@ h6 {
   z-index: -1000;
 }
 
+.cmstl-parallax {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-size: 600px 600px;
+  background-repeat: repeat;
+  background-position: top calc(1% * (var(--parallax-scroll) / 2)) left;
+
+  z-index: -1000;
+}
+
+.cmstl-parallax.cmstl-hero-parallax {
+  background-image: url("media/background_hero_smaller.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top calc(1% * (var(--parallax-scroll) / 0.3)) left;
+}
+
 .cmstl-parallax.cmstl-what-we-do-parallax {
-  background-image: url("media/solid-2.jpg");
+  background-image: url("media/background_repeat_3.jpg");
 }
 
 .cmstl-parallax.cmstl-say-hello-parallax {
-  background-image: url("media/solid-3.jpg");
+  background-image: url("media/background_repeat_3.jpg");
 }
 
 /* mobile backgrounds END */
@@ -741,6 +763,7 @@ h6 {
   /* text decrease for lg heading on 'hey-there' section as per request */
   font-size: 5.2rem;
   margin-bottom: 2rem;
+  letter-spacing: 0.07rem;
 }
 
 /* intersectionObserver anim */
@@ -781,6 +804,7 @@ h6 {
 
 #cmid-hey-there {
   position: relative;
+  overflow: hidden;
 }
 
 #canvas-wrapper {
