@@ -67,6 +67,7 @@
     </div>
     <!-- Contact Controls END -->
     <!-- Menu Modal -->
+    <div id="cmid-expanding-div-menu" class="cmstl-expanding-div"></div>
     <div class="cmstl-modal-menu cmstl-menu cmstl-hide">
       <div class="cmstl-section-wrapper-header">
         <div class="cmstl-modal-close-btn-wrapper">
@@ -129,8 +130,7 @@
         </div>
       </div>
     </div>
-    <!-- Menu Modal END -->
-    <div id="cmid-expanding-div-menu" class="cmstl-expanding-div"></div>
+    <!-- Form Modal END -->
     <div class="cmstl-global-wrapper">
       <div class="cmstl-section-wrapper-header cmstl-fixed-top">
         <header>
@@ -191,28 +191,38 @@
             </section>
           </div>
         </div>
-        <div
-          class="cmstl-section-wrapper cmstl-page-min-height cmstl-footer-bg-color"
-          id="cmid-hey-there"
-        >
-          <!-- three.js text -->
-          <!-- <div
+        <!-- NOTE: 
+              - 'cmstl-section-wrapper' needs a container with overflow hidden so that after a modal is opened
+         and closed a horizontal scroll bar does not appear 
+              - they appear due to the background movement functionality on the cmstl-section-wrapper elements
+              - 'cmstl-parallax-container' wrapping 'cmstl-section-wrapper' already have overflow hidden
+        -->
+        <div class="cmstl-overflow-hidden">
+          <div
+            class="cmstl-section-wrapper cmstl-page-min-height cmstl-footer-bg-color"
+            id="cmid-hey-there"
+          >
+            <!-- three.js text -->
+            <!-- <div
             id="canvas-wrapper"
             class="canvas"
             aria-label="neumorphism"
           ></div>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script> -->
-          <section>
-            <!-- Section I (Hey there) -->
-            <div class="cmstl-hey-there cmstl-section-wrapper-margin">
-              <h1 class="cmstl-fw-xl">Hi there!</h1>
-              <h1 class="cmstl-fw-lg">We're Kaizen&nbsp;Wave.</h1>
-              <h1 class="cmstl-fw-lg cmstl-fw-lg-special">We do Marketing.</h1>
-              <h1 class="cmstl-fw-lg cmstl-fw-lg-special">
-                Yes, anything you can think of!
-              </h1>
-            </div>
-          </section>
+            <section>
+              <!-- Section I (Hey there) -->
+              <div class="cmstl-hey-there cmstl-section-wrapper-margin">
+                <h1 class="cmstl-fw-xl">Hi there!</h1>
+                <h1 class="cmstl-fw-lg">We're Kaizen&nbsp;Wave.</h1>
+                <h1 class="cmstl-fw-lg cmstl-fw-lg-special">
+                  We do Marketing.
+                </h1>
+                <h1 class="cmstl-fw-lg cmstl-fw-lg-special">
+                  Yes, anything you can think of!
+                </h1>
+              </div>
+            </section>
+          </div>
         </div>
         <div class="cmstl-parallax-container">
           <div class="cmstl-parallax cmstl-what-we-do-parallax"></div>
@@ -270,21 +280,29 @@
             </section>
           </div>
         </div>
-        <div class="cmstl-section-wrapper cmstl-footer-bg-color">
-          <section>
-            <!-- Section III (Motto) -->
-            <div class="cmstl-motto">
-              <div class="cmstl-mw-responsive-lg">
-                <h1 class="cmstl-fw-lg">
-                  We use cutting-edge tools, bold creativity, and
-                  <span class="cmstl-text-flicker"
-                    >a&nbsp;relentless drive</span
-                  >
-                  to help your business grow.
-                </h1>
+        <!-- NOTE: 
+              - 'cmstl-section-wrapper' needs a container with overflow hidden so that after a modal is opened
+         and closed a horizontal scroll bar does not appear 
+              - they appear due to the background movement functionality on the cmstl-section-wrapper elements
+              - 'cmstl-parallax-container' wrapping 'cmstl-section-wrapper' already have overflow hidden
+        -->
+        <div class="cmstl-overflow-hidden">
+          <div class="cmstl-section-wrapper cmstl-footer-bg-color">
+            <section>
+              <!-- Section III (Motto) -->
+              <div class="cmstl-motto">
+                <div class="cmstl-mw-responsive-lg">
+                  <h1 class="cmstl-fw-lg">
+                    We use cutting-edge tools, bold creativity, and
+                    <span class="cmstl-text-flicker"
+                      >a&nbsp;relentless drive</span
+                    >
+                    to help your business grow.
+                  </h1>
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
         <div class="cmstl-parallax-container">
           <div class="cmstl-parallax cmstl-say-hello-parallax"></div>
@@ -358,35 +376,43 @@
         </div>
       </main>
       <!-- Footer -->
-      <div class="cmstl-section-wrapper cmstl-footer-bg-color">
-        <footer>
-          <div class="cmstl-footer">
-            <div class="cmstl-nav-wrapper">
-              <nav class="cmstl-footer-nav">
-                <!-- Site Logo -->
-                <div class="cmstl-site-logo-wrapper">
-                  <div class="cmstl-site-logo cmstl-invisible"></div>
-                  <div class="cmstl-site-logo-text cmstl-reposition-text">
-                    Kaizen Wave
+      <!-- NOTE: 
+              - 'cmstl-section-wrapper' needs a container with overflow hidden so that after a modal is opened
+         and closed a horizontal scroll bar does not appear 
+              - they appear due to the background movement functionality on the cmstl-section-wrapper elements
+              - 'cmstl-parallax-container' wrapping 'cmstl-section-wrapper' already have overflow hidden
+      -->
+      <div class="cmstl-overflow-hidden">
+        <div class="cmstl-section-wrapper cmstl-footer-bg-color">
+          <footer>
+            <div class="cmstl-footer">
+              <div class="cmstl-nav-wrapper">
+                <nav class="cmstl-footer-nav">
+                  <!-- Site Logo -->
+                  <div class="cmstl-site-logo-wrapper">
+                    <div class="cmstl-site-logo cmstl-invisible"></div>
+                    <div class="cmstl-site-logo-text cmstl-reposition-text">
+                      Kaizen Wave
+                    </div>
                   </div>
-                </div>
-                <!-- Site Logo END -->
-                <div class="cmstl-responsive-menu-wrapper">
-                  <div class="cmstl-responsive-menu">
-                    <ul>
-                      <!-- <li><a href="#cmid-hey-there">Inside encoder</a></li> -->
-                      <li><a href="#cmid-what-we-do">Services</a></li>
-                      <li><a href="#cmid-say-hello">Say Hello</a></li>
-                    </ul>
+                  <!-- Site Logo END -->
+                  <div class="cmstl-responsive-menu-wrapper">
+                    <div class="cmstl-responsive-menu">
+                      <ul>
+                        <!-- <li><a href="#cmid-hey-there">Inside encoder</a></li> -->
+                        <li><a href="#cmid-what-we-do">Services</a></li>
+                        <li><a href="#cmid-say-hello">Say Hello</a></li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </nav>
+                </nav>
+              </div>
+              <div class="cmstl-copyright-section">
+                <div>&copy; 2024 Kaizen Wave</div>
+              </div>
             </div>
-            <div class="cmstl-copyright-section">
-              <div>&copy; 2024 Kaizen Wave</div>
-            </div>
-          </div>
-        </footer>
+          </footer>
+        </div>
       </div>
       <!-- Footer END -->
     </div>

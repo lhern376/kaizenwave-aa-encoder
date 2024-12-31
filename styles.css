@@ -235,6 +235,10 @@ h6 {
   display: none;
 }
 
+.cmstl-overflow-hidden {
+  overflow: hidden;
+}
+
 .cmstl-fw-xl {
   color: var(--cmstl-f-color-link-hover);
   font-size: 15.36rem;
