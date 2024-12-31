@@ -67,7 +67,7 @@ window.addEventListener("scroll", () => {
       turnWheels();
       ws_reveal_occurred = true;
     }
-    console.log(pixelsFromTop, screenHeight);
+    // console.log(pixelsFromTop, screenHeight);
   }
 });
 
@@ -322,6 +322,7 @@ const hey_there_observer = new IntersectionObserver(
       }
 
       // --------------- three.js text
+      /*
       if (entry.target === three_js_section) {
         three_js_canvas.classList.toggle(
           "cmstl-canvas-transition",
@@ -338,6 +339,7 @@ const hey_there_observer = new IntersectionObserver(
           });
         }
       }
+      */
     });
   },
   { rootMargin: "-50px" }
@@ -494,7 +496,7 @@ function setSizePropExpandingDiv() {
   const size = Math.max(htmlElement.clientHeight, htmlElement.clientWidth);
 
   // console.log(size);
-  htmlElement.style.setProperty("--size", size * 2); // whatever it's value, double it
+  htmlElement.style.setProperty("--size", size);
 }
 
 setSizePropExpandingDiv(); // run the function in case page is reloaded
@@ -505,12 +507,8 @@ const body = document.querySelector("body"); // used to disable scrolling
 const modal_menu = document.querySelector(".cmstl-modal-menu.cmstl-menu");
 const modal_form = document.querySelector(".cmstl-modal-menu.cmstl-form");
 const navbar = document.querySelector(".cmstl-nav-wrapper"); // hides
-const expanding_div_menu = document.querySelector(
-  ".cmstl-menu-toggle .cmstl-expanding-div"
-);
-const expanding_div_form = document.querySelector(
-  ".cmstl-fixed-controls .cmstl-expanding-div"
-);
+const expanding_div_menu = document.querySelector("#cmid-expanding-div-menu");
+const expanding_div_form = document.querySelector("#cmid-expanding-div-form");
 
 const elements_that_open_modal_menu = [
   document.querySelector(".cmstl-menu-toggle"),
@@ -532,7 +530,7 @@ const elements_that_close_modal_form = [
 
 // ---------------------------------------------------- Open and Close functions
 
-const openModal = (e, open_elements, modal, expanding_div, navbar, body) => {
+const openModal = (e, open_elements, modal, expanding_div) => {
   if (open_elements.includes(e.target)) {
     expanding_div.classList.add("cmstl-expanding-div-expanded");
 
@@ -540,15 +538,15 @@ const openModal = (e, open_elements, modal, expanding_div, navbar, body) => {
 
     setTimeout(() => {
       modal.classList.remove("cmstl-hide");
-      navbar.classList.add("cmstl-hide");
+      // navbar.classList.add("cmstl-hide");
     }, 300);
   }
 };
 
-const closeModal = (e, close_elements, modal, navbar, body) => {
+const closeModal = (e, close_elements, modal) => {
   if (close_elements.includes(e.target)) {
     modal.classList.add("cmstl-hide");
-    navbar.classList.remove("cmstl-hide");
+    // navbar.classList.remove("cmstl-hide");
 
     body.style.overflow = "visible";
 
@@ -566,51 +564,29 @@ const closeModal = (e, close_elements, modal, navbar, body) => {
 
 // ---- open modal menu
 
-elements_that_open_modal_menu.forEach((elem) =>
-  elem.addEventListener("click", (e) => {
-    openModal(
-      e,
-      elements_that_open_modal_menu,
-      modal_menu,
-      expanding_div_menu,
-      navbar,
-      body
-    );
-  })
-);
+document.addEventListener("click", (e) => {
+  openModal(e, elements_that_open_modal_menu, modal_menu, expanding_div_menu);
+});
 
 // ---- close modal menu
 
-elements_that_close_modal_menu.forEach((elem) =>
-  elem.addEventListener("click", (e) => {
-    closeModal(e, elements_that_close_modal_menu, modal_menu, navbar, body);
-  })
-);
+document.addEventListener("click", (e) => {
+  closeModal(e, elements_that_close_modal_menu, modal_menu);
+});
 
 // ---------------------------------------------------- Modal Form
 
 // ---- open modal form
 
-elements_that_open_modal_form.forEach((elem) =>
-  elem.addEventListener("click", (e) => {
-    openModal(
-      e,
-      elements_that_open_modal_form,
-      modal_form,
-      expanding_div_form,
-      navbar,
-      body
-    );
-  })
-);
+document.addEventListener("click", (e) => {
+  openModal(e, elements_that_open_modal_form, modal_form, expanding_div_form);
+});
 
 // ---- close modal form
 
-elements_that_close_modal_form.forEach((elem) =>
-  elem.addEventListener("click", (e) => {
-    closeModal(e, elements_that_close_modal_form, modal_form, navbar, body);
-  })
-);
+document.addEventListener("click", (e) => {
+  closeModal(e, elements_that_close_modal_form, modal_form);
+});
 
 /**
  *
@@ -645,7 +621,7 @@ function setParallaxScrollProp() {
   const domHeight = document.body.offsetHeight;
 
   const percentScrolled = scrollFromTop / (domHeight - windowHeight);
-  console.log(percentScrolled * 100);
+  // console.log(percentScrolled * 100);
   htmlElement.style.setProperty("--parallax-scroll", percentScrolled * 100);
 }
 
@@ -665,6 +641,8 @@ setParallaxScrollProp(); // run the function in case page is reloaded
  * https://www.ilithya.rocks/
  * https://twitter.com/ilithya_rocks
  */
+
+/*
 
 // const colorBg = "hotpink"; // #ff69b4
 const colorBg = "rgba(13, 13, 13)";
@@ -819,3 +797,5 @@ const render = () => {
   requestAnimationFrame(render);
 };
 render();
+
+*/

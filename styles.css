@@ -377,26 +377,32 @@ h6 {
 
 /* Modal Pop Up Animation */
 
-/* - the elements this element is attached to needs position: relative */
-/* - the element only has this div attached and no other so it can be easily selected with 'div' */
+#cmid-expanding-div-menu {
+  position: fixed;
+  top: 5px;
+  right: 5px;
+}
+
+#cmid-expanding-div-form {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+}
+
 .cmstl-expanding-div {
   /* the filter is actually magnified when scaling the element so can't use */
   /* backdrop-filter: var(--cmstl-blur-lg); */
 
   background-color: rgba(0, 0, 0, 0.9);
-  /* width: 5px;
-  height: 5px; */
-  width: 1px;
-  height: 1px;
+  width: 5px;
+  height: 5px;
   border-radius: 100%;
-
-  position: absolute;
-  /* hide behind parent */
-  z-index: -1;
 
   cursor: default;
 
-  scale: 1;
+  z-index: 1500;
+
+  scale: 0;
 
   transition-property: scale;
   transition-duration: 500ms;
@@ -404,14 +410,9 @@ h6 {
 }
 
 .cmstl-expanding-div-expanded {
-  /* scale 5px to twice the size of the largest side of the screen (calculation is somewhat close lol) */
-  scale: calc(5 * (2 * var(--size) / 5));
-  /* z-index: 3000; */
-}
-
-/* DOES NOT WORK - overrites opacity 0 from fixed-controls when it reaches 'say-hello' section */
-.cmstl-fixed-controls .cmstl-mail .cmstl-expanding-div {
-  opacity: 1;
+  /* scale 5px to twice the size of the largest side of the screen, 5m = 2x => m = 2x / 5 */
+  /* make it x4 so it moves faster */
+  scale: calc(4 * var(--size) / 5);
 }
 
 /* ---------------------------------------------- Header Styles */
@@ -1027,7 +1028,7 @@ h6 {
   position: fixed;
   bottom: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 1001; /* higher than navbar so that logo doesn't show blur when modal is active */
 
   padding: 2.4rem;
 
