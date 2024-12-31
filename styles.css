@@ -434,9 +434,9 @@ h6 {
 
 .cmstl-site-logo-wrapper {
   /* backdrop filter */
-  backdrop-filter: var(--cmstl-blur);
+  /* backdrop-filter: var(--cmstl-blur); */
   /* padding: 0.9rem; */
-  border-radius: 1.5rem;
+  /* border-radius: 1.5rem; */
 
   position: relative;
 }
@@ -454,6 +454,9 @@ h6 {
   background-image: url("media/Logo_KaizenWave_200.png");
   background-size: contain;
   background-repeat: no-repeat;
+
+  backdrop-filter: var(--cmstl-blur);
+  border-radius: 1.5rem;
 
   scale: 1;
 
