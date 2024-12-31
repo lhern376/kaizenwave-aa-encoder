@@ -20,7 +20,7 @@
 
 //  * ---- Background Parallax
 
-//  * ---- NEUMORPHISM TYPO
+//  * ---- NEUMORPHISM TYPO (three.js)
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
 
@@ -28,7 +28,7 @@
  *
  * ---- Reveal Wheel
  *
- *  - turn wheels @40% scrolled from top
+ *  - turn wheels when a given percentage ('targetRatioWheels') scrolled from top is reached
  *
  */
 
@@ -44,9 +44,9 @@ function setSizePropRevealWheel() {
 }
 setSizePropRevealWheel();
 
-function turnWheels() {
-  const ws = document.querySelectorAll(".cmstl-background-reveal-wheel");
+const ws = document.querySelectorAll(".cmstl-background-reveal-wheel"); // reveal wheels
 
+function turnWheels() {
   const height = document.documentElement.clientHeight;
   ws.forEach((w) => {
     w.style.rotate = "-360deg";
@@ -54,14 +54,20 @@ function turnWheels() {
   });
 }
 
-const targetRatioWheels = 0.001; // 40% of screen scrolled
+const targetRatioWheels = 0.001; // 0.1% of screen scrolled
+let ws_reveal_occurred = false;
 
 window.addEventListener("scroll", () => {
-  let pixelsFromTop = window.scrollY;
-  let screenHeight = document.documentElement.clientHeight; // screen height rather than dom height
+  // (Optimization) This should only run once
+  if (ws_reveal_occurred === false) {
+    let pixelsFromTop = window.scrollY;
+    let screenHeight = document.documentElement.clientHeight; // screen height rather than dom height
 
-  if (pixelsFromTop / screenHeight >= targetRatioWheels) {
-    turnWheels();
+    if (pixelsFromTop / screenHeight >= targetRatioWheels) {
+      turnWheels();
+      ws_reveal_occurred = true;
+    }
+    console.log(pixelsFromTop, screenHeight);
   }
 });
 
@@ -97,11 +103,11 @@ window.addEventListener("scroll", () => {
  *
  * ---- Animate logo on scroll
  *
- * - animate logo at 5% of dom height (NOTE: adjust percent as the page grows in content)
+ * - animate logo at 33% of screen scrolled (from top)
  *
  */
 
-const targetRatio = 1 / 3; // one third of screen scrolled
+const targetRatioLogo = 1 / 3; // one third of screen scrolled
 
 const logoText = document.querySelector(".cmstl-site-logo-text");
 const logo = document.querySelector(".cmstl-site-logo");
@@ -111,7 +117,7 @@ window.addEventListener("scroll", () => {
   // let domHeight = document.body.offsetHeight; // dom height
   let screenHeight = document.documentElement.clientHeight; // screen height rather than dom height
 
-  if (pixelsFromTop / screenHeight >= targetRatio) {
+  if (pixelsFromTop / screenHeight >= targetRatioLogo) {
     logoText.classList.add("cmstl-site-logo-text-shrink");
     logo.classList.remove("cmstl-invisible");
   } else {
@@ -139,7 +145,7 @@ function setScrollProp() {
   // document.documentElement.scrollTop returns window.scrollY (special case of .scrollTop when it is the property of the root/html)
   const currentRatio = Math.min(
     htmlElement.scrollTop / htmlElement.clientHeight,
-    targetRatio
+    targetRatioLogo
   ); // value from 0 to targetRatio
   // console.log(currentRatio * 100);
   htmlElement.style.setProperty("--scroll", currentRatio * 100); // scales the ratio for convenience
@@ -250,9 +256,9 @@ setInterval(() => {
 const sections = document.querySelectorAll(".cmstl-section-wrapper");
 
 document.addEventListener("mousemove", (e) => {
-  // Only on desktop
-  let mql = window.matchMedia("(max-width: 1280px)");
-  if (mql.matches) return;
+  // Only on desktop (mqs: media query small)
+  let mqs = window.matchMedia("(max-width: 1280px)");
+  if (mqs.matches) return;
 
   let window_w = window.innerWidth;
   let mouse_x = e.clientX;
@@ -637,7 +643,7 @@ function setParallaxScrollProp() {
 setParallaxScrollProp(); // run the function in case page is reloaded
 
 /*
- * ---- NEUMORPHISM TYPO
+ * ---- NEUMORPHISM TYPO (three.js)
  *
  * Made with ThreeJS - Enjoy!
  *
@@ -652,7 +658,7 @@ setParallaxScrollProp(); // run the function in case page is reloaded
  */
 
 // const colorBg = "hotpink"; // #ff69b4
-const colorBg = "rgba(13,13,13,0)";
+const colorBg = "rgba(13, 13, 13)";
 // const colorTypo = "#ff49a4"; // dark pink
 const colorTypo = "rgb(93, 155, 219)";
 // const colorTypo = "rgb(94, 87,183)";

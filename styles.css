@@ -101,6 +101,9 @@
 
   /* Custom Properties Created and Tracked with Javascript */
   /* initialize to 0 in case the page is reloaded */
+  --target-ratio-logo: calc(
+    100 / 3
+  ); /* matches 'targetRatioLogo' in 'main.js' */
   --scroll: 0; /* viewport */
   --size: 0; /* max(w, h) viewport */
   --width: 0; /* viewport */
@@ -728,7 +731,7 @@ h6 {
 
   /* Equation to map 'x' in range [a, b] to 'y' in range [c, d]
   
-    x = scroll, [a, b] = [0, 100/3] (33%)
+    x = scroll, [a, b] = [0, 100/3] (33%) --> 100/3 matches 'targetRatioLogo' in 'main.js'
 
     y = opacity, [c, d] = [1, 0] (from opacity 1 to opacity 0, from visible to invisible)
   
@@ -736,7 +739,7 @@ h6 {
   
   */
 
-  opacity: calc(1 - (var(--scroll) / (100 / 3)));
+  opacity: calc(1 - (var(--scroll) / var(--target-ratio-logo)));
 }
 
 .cmstl-hero span {
