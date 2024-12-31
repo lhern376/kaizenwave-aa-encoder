@@ -499,20 +499,18 @@ function setSizePropExpandingDiv() {
 
 setSizePropExpandingDiv(); // run the function in case page is reloaded
 
-// -------- grab all the elements that interact with modal and implement click event
+// ---------------------------------------------------- Elements that interact with modals
 
 const body = document.querySelector("body"); // used to disable scrolling
 const modal_menu = document.querySelector(".cmstl-modal-menu.cmstl-menu");
 const modal_form = document.querySelector(".cmstl-modal-menu.cmstl-form");
-const navbar = document.querySelector(".cmstl-nav-wrapper");
+const navbar = document.querySelector(".cmstl-nav-wrapper"); // hides
 const expanding_div_menu = document.querySelector(
   ".cmstl-menu-toggle .cmstl-expanding-div"
 );
 const expanding_div_form = document.querySelector(
   ".cmstl-fixed-controls .cmstl-expanding-div"
 );
-
-// ---- open modals and hide nav bar and disable scrolling
 
 const elements_that_open_modal_menu = [
   document.querySelector(".cmstl-menu-toggle"),
@@ -522,27 +520,17 @@ const elements_that_open_modal_form = [
   ...document.querySelectorAll(".cmstl-mail"),
 ];
 
-document.addEventListener("click", (e) => {
-  openModal(
-    e,
-    elements_that_open_modal_menu,
-    modal_menu,
-    expanding_div_menu,
-    navbar,
-    body
-  );
-});
+const elements_that_close_modal_menu = [
+  document.querySelector(".cmstl-menu .cmstl-modal-close-btn"),
+  ...document.querySelectorAll(".cmstl-modal-menu-wrapper a"),
+];
 
-document.addEventListener("click", (e) => {
-  openModal(
-    e,
-    elements_that_open_modal_form,
-    modal_form,
-    expanding_div_form,
-    navbar,
-    body
-  );
-});
+const elements_that_close_modal_form = [
+  document.querySelector(".cmstl-form .cmstl-modal-close-btn"),
+  document.querySelector(".cmstl-modal-form-wrapper"),
+];
+
+// ---------------------------------------------------- Open and Close functions
 
 const openModal = (e, open_elements, modal, expanding_div, navbar, body) => {
   if (open_elements.includes(e.target)) {
@@ -556,26 +544,6 @@ const openModal = (e, open_elements, modal, expanding_div, navbar, body) => {
     }, 300);
   }
 };
-
-// ---- close modals
-
-const elements_that_close_modal_menu = [
-  document.querySelector(".cmstl-menu .cmstl-modal-close-btn"),
-  ...document.querySelectorAll(".cmstl-modal-menu-wrapper a"),
-];
-
-const elements_that_close_modal_form = [
-  document.querySelector(".cmstl-form .cmstl-modal-close-btn"),
-  document.querySelector(".cmstl-modal-form-wrapper"),
-];
-
-document.addEventListener("click", (e) => {
-  closeModal(e, elements_that_close_modal_menu, modal_menu, navbar, body);
-});
-
-document.addEventListener("click", (e) => {
-  closeModal(e, elements_that_close_modal_form, modal_form, navbar, body);
-});
 
 const closeModal = (e, close_elements, modal, navbar, body) => {
   if (close_elements.includes(e.target)) {
@@ -593,6 +561,56 @@ const closeModal = (e, close_elements, modal, navbar, body) => {
     }, 50);
   }
 };
+
+// ---------------------------------------------------- Modal Menu
+
+// ---- open modal menu
+
+elements_that_open_modal_menu.forEach((elem) =>
+  elem.addEventListener("click", (e) => {
+    openModal(
+      e,
+      elements_that_open_modal_menu,
+      modal_menu,
+      expanding_div_menu,
+      navbar,
+      body
+    );
+  })
+);
+
+// ---- close modal menu
+
+elements_that_close_modal_menu.forEach((elem) =>
+  elem.addEventListener("click", (e) => {
+    closeModal(e, elements_that_close_modal_menu, modal_menu, navbar, body);
+  })
+);
+
+// ---------------------------------------------------- Modal Form
+
+// ---- open modal form
+
+elements_that_open_modal_form.forEach((elem) =>
+  elem.addEventListener("click", (e) => {
+    openModal(
+      e,
+      elements_that_open_modal_form,
+      modal_form,
+      expanding_div_form,
+      navbar,
+      body
+    );
+  })
+);
+
+// ---- close modal form
+
+elements_that_close_modal_form.forEach((elem) =>
+  elem.addEventListener("click", (e) => {
+    closeModal(e, elements_that_close_modal_form, modal_form, navbar, body);
+  })
+);
 
 /**
  *
