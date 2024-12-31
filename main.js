@@ -283,187 +283,102 @@ document.addEventListener("mousemove", (e) => {
  *
  */
 
-// ---------------------------------------------------- Hey there section text
+// ---------------------------------------------------- Hey there section
 
-// --------------- xl text
-
-const hey_there_observer_xl = new IntersectionObserver(
-  (entries) => {
-    const entry = entries[0];
-
-    entry.target.classList.toggle(
-      "cmstl-hey-there-scroll-anim-xl",
-      entry.isIntersecting
-    );
-
-    if (entry.isIntersecting) hey_there_observer_xl.unobserve(entry.target);
-  },
-  { rootMargin: "-50px" }
-);
+// --------------- Elements
 
 const hey_there_xl = document.querySelector(".cmstl-hey-there .cmstl-fw-xl");
 
-hey_there_observer_xl.observe(hey_there_xl);
-
-// --------------- other text
-
-const hey_there_observer_other = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      entry.target.classList.toggle(
-        "cmstl-hey-there-scroll-anim-other",
-        entry.isIntersecting
-      );
-
-      if (entry.isIntersecting)
-        hey_there_observer_other.unobserve(entry.target);
-    });
-  },
-  { rootMargin: "-50px" }
-);
-
-const hey_there_other_arr = document.querySelectorAll(
+const hey_there_other_nodeList = document.querySelectorAll(
   ".cmstl-hey-there .cmstl-fw-lg"
-);
-
-hey_there_other_arr.forEach((entry) => {
-  hey_there_observer_other.observe(entry);
-});
-
-// --------------- three.js canvas
+); // other text
+const hey_there_other_arr = Array.from(hey_there_other_nodeList); // turn into array to search elements with 'includes'
 
 const three_js_canvas = document.querySelector("#canvas-wrapper");
+const three_js_section = document.querySelector("#cmid-what-we-do");
 
-const hey_there_observer_canvas = new IntersectionObserver(
+// --------------- Observer
+
+const hey_there_observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      three_js_canvas.classList.toggle(
-        "cmstl-canvas-transition",
-        entry.isIntersecting
-      );
+      // --------------- xl text
+      if (entry.target === hey_there_xl) {
+        entry.target.classList.toggle(
+          "cmstl-hey-there-scroll-anim-xl",
+          entry.isIntersecting
+        );
 
-      if (entry.isIntersecting) {
-        hey_there_other_arr.forEach((elem) => {
-          elem.classList.add("cmstl-reduce-opacity");
-        });
-      } else {
-        hey_there_other_arr.forEach((elem) => {
-          elem.classList.remove("cmstl-reduce-opacity");
-        });
+        if (entry.isIntersecting) hey_there_observer.unobserve(entry.target);
+      }
+      // --------------- other text
+      if (hey_there_other_arr.includes(entry.target)) {
+        entry.target.classList.toggle(
+          "cmstl-hey-there-scroll-anim-other",
+          entry.isIntersecting
+        );
+
+        if (entry.isIntersecting) hey_there_observer.unobserve(entry.target);
+      }
+
+      // --------------- three.js text
+      if (entry.target === three_js_section) {
+        three_js_canvas.classList.toggle(
+          "cmstl-canvas-transition",
+          entry.isIntersecting
+        );
+
+        if (entry.isIntersecting) {
+          hey_there_other_arr.forEach((elem) => {
+            elem.classList.add("cmstl-reduce-opacity");
+          });
+        } else {
+          hey_there_other_arr.forEach((elem) => {
+            elem.classList.remove("cmstl-reduce-opacity");
+          });
+        }
       }
     });
   },
   { rootMargin: "-50px" }
 );
 
-const three_js_section = document.querySelector("#cmid-what-we-do");
+// --------------- Add to observer
 
-hey_there_observer_canvas.observe(three_js_section);
-
-// ---------------------------------------------------- What we do section text
-
-// --------------- xl text
-
-const what_we_do_observer_xl = new IntersectionObserver((entries) => {
-  const entry = entries[0];
-
-  entry.target.classList.toggle(
-    "cmstl-what-we-do-scroll-anim-xl",
-    entry.isIntersecting
-  );
-
-  // if (entry.isIntersecting) what_we_do_observer_xl.unobserve(entry.target);
+hey_there_observer.observe(hey_there_xl);
+hey_there_other_arr.forEach((entry) => {
+  hey_there_observer.observe(entry);
 });
+hey_there_observer.observe(three_js_section);
+
+// ---------------------------------------------------- What we do section
+// ---------------------------------------------------- Motto section
+// ---------------------------------------------------- Say hello section
+
+// --------------- Elements
+
+// ---- what we do
 
 const what_we_do_xl = document.querySelector(".cmstl-what-we-do .cmstl-fw-xl");
 
-what_we_do_observer_xl.observe(what_we_do_xl);
-
-// --------------- lg text
-
-const what_we_do_observer_lg = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    entry.target.classList.toggle(
-      "cmstl-what-we-do-scroll-anim-lg",
-      entry.isIntersecting
-    );
-
-    // if (entry.isIntersecting) what_we_do_observer_lg.unobserve(entry.target);
-  });
-});
-
-const what_we_do_lg_arr = document.querySelectorAll(
+const what_we_do_lg_nodeList = document.querySelectorAll(
   ".cmstl-what-we-do .cmstl-fw-lg"
 );
+const what_we_do_lg_arr = Array.from(what_we_do_lg_nodeList);
 
-what_we_do_lg_arr.forEach((entry) => {
-  what_we_do_observer_lg.observe(entry);
-});
-
-// --------------- normal text
-
-const what_we_do_observer_normal = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    entry.target.classList.toggle(
-      "cmstl-what-we-do-scroll-anim-normal",
-      entry.isIntersecting
-    );
-
-    // if (entry.isIntersecting) what_we_do_observer_normal.unobserve(entry.target);
-  });
-});
-
-const what_we_do_normal_arr = document.querySelectorAll(
+const what_we_do_normal_nodeList = document.querySelectorAll(
   ".cmstl-what-we-do .cmstl-fw-normal"
 );
+const what_we_do_normal_arr = Array.from(what_we_do_normal_nodeList);
 
-what_we_do_normal_arr.forEach((entry) => {
-  what_we_do_observer_normal.observe(entry);
-});
+// ---- motto
 
-// ---------------------------------------------------- Motto section text
+const motto_lg = document.querySelector(".cmstl-motto .cmstl-fw-lg");
 
-const motto_observer = new IntersectionObserver((entries) => {
-  const entry = entries[0];
-
-  entry.target.classList.toggle(
-    "cmstl-motto-scroll-anim",
-    entry.isIntersecting
-  );
-
-  if (entry.isIntersecting) motto_observer.unobserve(entry.target);
-});
-
-motto_observer.observe(document.querySelector(".cmstl-motto .cmstl-fw-lg"));
-
-// ---------------------------------------------------- Say hello section text
+// ---- say hello
 
 const say_hello_section = document.querySelector(".cmstl-say-hello"); // observe to hide Fixed Controls on Say Hello section
 const fixed_controls_wrapper = document.querySelector(".cmstl-fixed-controls");
-
-const say_hello_observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    // if (entry.isIntersecting) console.log(entry.target);
-
-    // Special Case (hide contact controls)
-    if (entry.target === say_hello_section) {
-      // hide contact controls
-      fixed_controls_wrapper.classList.toggle(
-        "cmstl-hide-fixed-controls",
-        entry.isIntersecting
-      );
-    }
-
-    entry.target.classList.toggle(
-      "cmstl-say-hello-scroll-anim",
-      entry.isIntersecting
-    );
-
-    if (entry.isIntersecting && entry.target !== say_hello_section)
-      // do not unobserve the section
-      say_hello_observer.unobserve(entry.target);
-  });
-});
 
 const say_hello_xl = document.querySelector(".cmstl-say-hello .cmstl-fw-xl");
 const say_hello_lg = document.querySelector(".cmstl-say-hello .cmstl-fw-lg");
@@ -482,8 +397,84 @@ const say_hello_arr = [
   say_hello_contact,
 ];
 
+// --------------- Observer
+
+const generic_observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    // --------------- what we do xl text
+    if (entry.target === what_we_do_xl) {
+      entry.target.classList.toggle(
+        "cmstl-what-we-do-scroll-anim-xl",
+        entry.isIntersecting
+      );
+      // if (entry.isIntersecting) generic_observer.unobserve(entry.target);
+    }
+    // --------------- what we do lg text
+    if (what_we_do_lg_arr.includes(entry.target)) {
+      entry.target.classList.toggle(
+        "cmstl-what-we-do-scroll-anim-lg",
+        entry.isIntersecting
+      );
+
+      // if (entry.isIntersecting) generic_observer.unobserve(entry.target);
+    }
+    // --------------- what we do normal text
+    if (what_we_do_normal_arr.includes(entry.target)) {
+      entry.target.classList.toggle(
+        "cmstl-what-we-do-scroll-anim-normal",
+        entry.isIntersecting
+      );
+
+      // if (entry.isIntersecting) generic_observer.unobserve(entry.target);
+    }
+    // --------------- Motto text
+    if (entry.target === motto_lg) {
+      entry.target.classList.toggle(
+        "cmstl-motto-scroll-anim",
+        entry.isIntersecting
+      );
+
+      if (entry.isIntersecting) generic_observer.unobserve(entry.target);
+    }
+    // --------------- Say hello text
+    if (say_hello_arr.includes(entry.target)) {
+      // Special Case (hide contact controls)
+      if (entry.target === say_hello_section) {
+        // hide contact controls
+        fixed_controls_wrapper.classList.toggle(
+          "cmstl-hide-fixed-controls",
+          entry.isIntersecting
+        );
+      }
+
+      entry.target.classList.toggle(
+        "cmstl-say-hello-scroll-anim",
+        entry.isIntersecting
+      );
+
+      if (entry.isIntersecting && entry.target !== say_hello_section)
+        // unobserve everything except the 'say_hello_section'
+        generic_observer.unobserve(entry.target);
+    }
+  });
+});
+
+// --------------- Add to observer
+
+generic_observer.observe(what_we_do_xl);
+
+what_we_do_lg_arr.forEach((entry) => {
+  generic_observer.observe(entry);
+});
+
+what_we_do_normal_arr.forEach((entry) => {
+  generic_observer.observe(entry);
+});
+
+generic_observer.observe(motto_lg);
+
 say_hello_arr.forEach((entry) => {
-  say_hello_observer.observe(entry);
+  generic_observer.observe(entry);
 });
 
 /**
