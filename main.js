@@ -534,7 +534,7 @@ const openModal = (e, open_elements, modal, expanding_div) => {
   if (open_elements.includes(e.target)) {
     expanding_div.classList.add("cmstl-expanding-div-expanded");
 
-    // body.style.overflow = "hidden";
+    body.style.overflow = "hidden";
 
     setTimeout(() => {
       modal.classList.remove("cmstl-hide");
@@ -548,7 +548,7 @@ const closeModal = (e, close_elements, modal) => {
     modal.classList.add("cmstl-hide");
     // navbar.classList.remove("cmstl-hide");
 
-    // body.style.overflow = "visible";
+    body.style.overflow = "visible";
 
     setTimeout(() => {
       let expanding_div = document.querySelector(

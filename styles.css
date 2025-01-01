@@ -78,6 +78,7 @@
   /* Font Colors */
   /* --cmstl-f-color: rgb(231, 233, 234);  */
   --cmstl-f-color: rgb(255, 255, 255); /* font color */
+  --cmstl-f-color-secondary: rgb(105, 105, 105);
 
   /* Link Colors */
   /* --cmstl-f-color-link-hover: rgb(230, 26, 46); */
@@ -292,15 +293,27 @@ h6 {
   backdrop-filter: var(--cmstl-blur-lg);
   opacity: 1;
 
-  transition-property: opacity, display;
+  transition-property: opacity, display, transform, scale;
   transition-duration: 250ms;
   transition-timing-function: linear;
   transition-behavior: allow-discrete;
 }
 
-.cmstl-modal-menu.cmstl-hide {
+.cmstl-menu.cmstl-hide {
   display: none;
   opacity: 0;
+}
+
+.cmstl-form {
+  scale: 1;
+  transform: translate(0, 0);
+}
+
+.cmstl-form.cmstl-hide {
+  display: none;
+  opacity: 0;
+  scale: 0.5;
+  transform: translate(50%, 50%);
 }
 
 .cmstl-modal-close-btn-wrapper {
@@ -348,21 +361,26 @@ h6 {
   /* padding: 0; screen max-width: 767px  */
 
   display: flex;
-  /* align-items: center; */
   justify-content: center;
 
   overflow: hidden;
 }
 
+.cmstl-modal-form-wrapper .cmstl-modal-close-btn-wrapper {
+  margin-bottom: 0;
+}
+
 .cmstl-modal-form-content-wrapper {
-  /* height: 100%; */
-  height: max-content;
+  height: 100%;
   max-width: 80rem;
   /* width: 95%; screen max-width: 767px */
 
   flex: 1;
   border-radius: 1rem;
   background-color: var(--cmstl-bg-color);
+
+  display: flex;
+  flex-direction: column;
 }
 
 .cmstl-form .cmstl-modal-close-btn {
@@ -370,13 +388,102 @@ h6 {
   padding-right: 1rem;
 }
 
-/* wpform wrapper */
 .cmstl-form-content {
-  padding: 5.76rem;
+  /* padding: 5.76rem; */
   /* padding-inline: 1rem; screen max-width: 767px */
   /* padding-bottom: 1.44rem; screen max-width: 767px */
 
-  padding-top: 2.4rem;
+  /* padding-top: 2.4rem; */
+
+  /* height: 95%; */
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+}
+
+.cmstl-form-spacer {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 1.92rem;
+}
+
+.cmstl-form-display-messages {
+  flex: 1;
+
+  padding-inline: 5.76rem;
+}
+
+.cmstl-form-enter-messages {
+  padding: 5.76rem;
+  padding-top: 0;
+
+  display: flex;
+}
+
+.cmstl-textarea-wrapper {
+  padding-inline: 2.4rem;
+  padding-block: 1.44rem;
+
+  outline: 1px solid var(--cmstl-f-color-link-hover);
+  /* outline: 1px solid var(--cmstl-f-color-secondary); */
+  outline-offset: -3px;
+  border-radius: 0.7rem;
+
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+#cmid-textarea {
+  flex: 1;
+  max-width: 100%;
+  height: 3.36rem;
+
+  color: var(--cmstl-f-color-link-hover);
+  font-size: 2.16rem;
+  line-height: 3.36rem;
+  letter-spacing: -0.1536rem;
+  word-spacing: -0.5rem;
+
+  background-color: var(--cmstl-bg-color);
+  border: 0;
+  resize: none;
+}
+
+#cmid-textarea:focus {
+  box-shadow: none;
+}
+
+#cmid-textarea::placeholder {
+  color: var(--cmstl-f-color-secondary);
+  font-size: 2rem;
+}
+
+.cmstl-submit-button.cmstl-contact {
+  border: none;
+  background-color: var(--cmstl-f-color-link-hover);
+  border-radius: 0.24rem;
+
+  color: var(--cmstl-f-color);
+
+  margin-left: 1.44rem;
+  padding: 1.92rem;
+  width: min-content;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cmstl-submit-button.cmstl-contact:hover {
+  background-color: var(--cmstl-f-color);
+  color: var(--cmstl-f-color-link-hover);
+}
+
+.cmstl-submit-button.cmstl-contact svg {
+  pointer-events: none;
+  width: 3.36rem;
+  height: 3.36rem;
 }
 
 /* Modal Pop Up Animation */
