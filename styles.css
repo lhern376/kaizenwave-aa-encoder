@@ -416,7 +416,7 @@ h6 {
 .cmstl-expanding-div-expanded {
   /* scale 5px to twice the size of the largest side of the screen, 5m = 2x => m = 2x / 5 */
   /* make it x4 so it moves faster */
-  scale: calc(4 * var(--size) / 5);
+  scale: calc(3 * var(--size) / 5);
 }
 
 /* ---------------------------------------------- Header Styles */
@@ -655,7 +655,8 @@ h6 {
 
   background-image: url("media/noise.gif");
   /* background-attachment: fixed; */
-  background-size: auto;
+  /* background-size: auto; */
+  background-size: 500px 500px;
   background-repeat: repeat;
 }
 
