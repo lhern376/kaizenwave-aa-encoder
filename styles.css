@@ -74,6 +74,7 @@
   /* --cmstl-bg-color: hsl(0, 0%, 0%); */
   --cmstl-bg-color: rgb(13, 13, 13);
   --cmstl-bg-color-footer: rgb(0, 0, 0);
+  --cmstl-bg-color-form-message: rgb(31, 31, 31);
 
   /* Font Colors */
   /* --cmstl-f-color: rgb(231, 233, 234);  */
@@ -240,6 +241,16 @@ h6 {
   overflow: hidden;
 }
 
+.cmstl-align-self-start {
+  align-self: start;
+  margin-right: 20%;
+}
+
+.cmstl-align-self-end {
+  align-self: end;
+  margin-left: 20%;
+}
+
 .cmstl-fw-xl {
   color: var(--cmstl-f-color-link-hover);
   font-size: 15.36rem;
@@ -313,7 +324,7 @@ h6 {
   display: none;
   opacity: 0;
   scale: 0.5;
-  transform: translate(50%, 50%);
+  transform: translate(100%, 50%);
 }
 
 .cmstl-modal-close-btn-wrapper {
@@ -388,19 +399,6 @@ h6 {
   padding-right: 1rem;
 }
 
-.cmstl-form-content {
-  /* padding: 5.76rem; */
-  /* padding-inline: 1rem; screen max-width: 767px */
-  /* padding-bottom: 1.44rem; screen max-width: 767px */
-
-  /* padding-top: 2.4rem; */
-
-  /* height: 95%; */
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
-}
-
 .cmstl-form-spacer {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   margin: 1.92rem;
@@ -410,6 +408,57 @@ h6 {
   flex: 1;
 
   padding-inline: 5.76rem;
+
+  overflow: auto;
+}
+
+.cmstl-form-message-block {
+  margin-bottom: 1.44rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cmstl-form-message-wrapper {
+  padding: 0.96rem 3.36rem 2.4rem 2.88rem;
+  /* width: max-content; */
+  max-width: 80%;
+  /* min-width: 45%; */
+  border-radius: 0.96rem;
+  background-color: var(--cmstl-bg-color-form-message);
+
+  position: relative;
+}
+
+.cmstl-form-message {
+  margin-top: 1.92rem;
+  max-width: 100%;
+  /* letter-spacing: 0.0192rem; */
+  letter-spacing: 0.02em;
+
+  overflow-wrap: anywhere;
+}
+
+.cmstl-form-answer {
+  background-color: rgb(0, 28, 77);
+  cursor: pointer;
+}
+
+.cmstl-form-answer-edit {
+  position: absolute;
+  top: 1.44rem;
+  right: 1.44rem;
+
+  pointer-events: none;
+}
+
+.cmstl-form-message.cmstl-fw-lg {
+  color: var(--cmstl-f-color-link-hover);
+  letter-spacing: -0.15rem;
+}
+
+.cmstl-form-message.cmstl-fw-normal {
+  font-size: 1.95rem;
+  /* font-size: 1.92rem; */
 }
 
 .cmstl-form-enter-messages {
@@ -431,6 +480,7 @@ h6 {
   flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 #cmid-textarea {
@@ -439,14 +489,18 @@ h6 {
   height: 3.36rem;
 
   color: var(--cmstl-f-color-link-hover);
+  font-family: inherit;
   font-size: 2.16rem;
   line-height: 3.36rem;
-  letter-spacing: -0.1536rem;
-  word-spacing: -0.5rem;
+  letter-spacing: 0.05rem;
 
   background-color: var(--cmstl-bg-color);
+  padding: 0;
   border: 0;
   resize: none;
+
+  overflow: hidden;
+  overflow-wrap: break-word;
 }
 
 #cmid-textarea:focus {
@@ -455,7 +509,9 @@ h6 {
 
 #cmid-textarea::placeholder {
   color: var(--cmstl-f-color-secondary);
-  font-size: 2rem;
+  font-size: 2.16rem;
+  line-height: 3.36rem;
+  letter-spacing: 0.05rem;
 }
 
 .cmstl-submit-button.cmstl-contact {
@@ -473,10 +529,12 @@ h6 {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* transition-property: color; */
 }
 
 .cmstl-submit-button.cmstl-contact:hover {
-  background-color: var(--cmstl-f-color);
+  /* background-color: var(--cmstl-f-color); */
   color: var(--cmstl-f-color-link-hover);
 }
 
@@ -1332,6 +1390,46 @@ h6 {
   .cmstl-fixed-controls .cmstl-contact svg {
     width: 1.9rem;
     height: 1.9rem;
+  }
+
+  /* --------------- Form Layout */
+
+  .cmstl-modal-form-wrapper {
+    padding: 0;
+  }
+
+  .cmstl-form-spacer {
+    margin-block: 0.96rem;
+    margin-inline: 0.48rem;
+  }
+
+  .cmstl-form-display-messages {
+    padding-inline: 1rem;
+  }
+
+  .cmstl-form-enter-messages {
+    padding-inline: 1rem;
+    padding-bottom: 1.44rem;
+  }
+
+  .cmstl-form-message-wrapper {
+    padding: 0 3.36rem 1.44rem 2.88rem;
+  }
+
+  #cmid-textarea {
+    height: 1.9rem;
+
+    font-size: 1.44rem;
+    line-height: 1.92rem;
+  }
+
+  #cmid-textarea::placeholder {
+    font-size: 1.44rem;
+    line-height: 1.92rem;
+  }
+
+  .cmstl-submit-button.cmstl-contact {
+    padding: 1.44rem;
   }
 
   /* --------------- Three.js anim */
