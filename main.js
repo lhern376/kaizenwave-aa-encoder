@@ -1,7 +1,5 @@
 // Index
 
-//  * ---- Form Logic
-
 //  * ---- Reveal Wheel
 
 //  * ---- Background-image movement
@@ -18,6 +16,8 @@
 
 //  * ---- Modal Animation
 
+//  * ---- Form Logic
+
 //  * ---- Add WPForm Container
 
 //  * ---- Background Parallax
@@ -25,13 +25,6 @@
 //  * ---- NEUMORPHISM TYPO (three.js)
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-
-/**
- *
- * ---- Form Logic
- *
- *
- */
 
 /**
  *
@@ -596,6 +589,13 @@ document.addEventListener("click", (e) => {
 document.addEventListener("click", (e) => {
   closeModal(e, elements_that_close_modal_form, modal_form);
 });
+
+/**
+ *
+ * ---- Form Logic
+ *
+ *
+ */
 
 /**
  *
