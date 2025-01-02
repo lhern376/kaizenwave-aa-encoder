@@ -144,9 +144,10 @@
                 </div>
               </div>
             </div>
-            <div class="cmstl-form-message-block">
+            <!-- TEMPLATE for User post, DONT ERASE -->
+            <!-- <div class="cmstl-form-message-block cmstl-form-answer">
               <div
-                class="cmstl-form-message-wrapper cmstl-align-self-end cmstl-form-answer"
+                class="cmstl-form-message-wrapper cmstl-align-self-end"
               >
                 <div class="cmstl-form-answer-edit">
                   <svg
@@ -171,14 +172,15 @@
                     ></path>
                   </svg>
                 </div>
-                <div class="cmstl-form-message cmstl-fw-normal">
-                  LllllllllllllllllllllllllllllllllLeduanlllllllllllllLeduanlllllllllllllLeduan
-                </div>
+                <div class="cmstl-form-message cmstl-fw-normal">Llll</div>
               </div>
-            </div>
+            </div> -->
           </div>
           <div class="cmstl-form-spacer"></div>
           <div class="cmstl-form-enter-messages">
+            <button id="cmid-send-btn" class="cmstl-hide cmstl-contact">
+              Send Message
+            </button>
             <div class="cmstl-textarea-wrapper">
               <textarea
                 name=""
@@ -187,7 +189,11 @@
                 placeholder="Type your name here"
               ></textarea>
             </div>
-            <button class="cmstl-submit-button cmstl-contact">
+            <button
+              id="cmid-submit-btn"
+              class="cmstl-submit-button cmstl-contact"
+              tabindex="0"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

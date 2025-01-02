@@ -483,6 +483,247 @@ say_hello_arr.forEach((entry) => {
 
 /**
  *
+ * ---- Form Logic
+ *
+ *  - form logic is started when opening the form modal (look at 'openModal')
+ *  - form logic gets reset when modal is closed (look at 'closeModal')
+ *  - the elements here are used in the modal logic section (below section)
+ */
+
+// ---- get elements
+
+const messages_container = document.getElementById(
+  "cmid-form-messages-wrapper"
+);
+
+const form_textarea = document.getElementById("cmid-textarea");
+
+const form_texarea_wrapper = document.querySelector(".cmstl-textarea-wrapper");
+
+// ---- site_answer html structure
+
+const get_site_answer_html = (site_answer) => {
+  return `
+<div class="cmstl-form-message-wrapper cmstl-align-self-start">
+  <div class="cmstl-form-message cmstl-fw-normal">
+    ${site_answer}
+  </div>
+</div>
+`;
+};
+
+// ---- user_answer html structure
+
+const get_user_answer_html = (user_answer) => {
+  return `
+<div
+  class="cmstl-form-message-wrapper cmstl-align-self-end"
+>
+  <div class="cmstl-form-answer-edit">
+    <svg
+      data-v-b06bdad0=""
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-file-pen-icon opacity-70"
+    >
+      <path
+        d="M12.5 22H18a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v9.5"
+      ></path>
+      <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+      <path
+        d="M13.378 15.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"
+      ></path>
+    </svg>
+  </div>
+  <div class="cmstl-form-message cmstl-fw-normal">
+    ${user_answer}
+  </div>
+</div>
+`;
+};
+
+// ---- submit button event listener (4 stages: name, email, message, send)
+
+// used in both, submit btn event and user message click event callbacks
+let user_answer_to_edit;
+let user_type_of_answer;
+
+// submit options
+const NEXT = 1;
+const EDIT = 2;
+
+// stages
+const NAME = 1;
+const EMAIL = 2;
+const MESSAGE = 3;
+const SEND = 4;
+
+// textarea placeholders
+// - the keys coincide with 'stages'
+const textarea_placeholders = {
+  1: "Type your name here",
+  2: "Enter your email address here",
+  3: "Your message goes here",
+};
+
+// site responses
+const site_responses = [
+  "We'd love to get to know you!<br/>What's your name?",
+  "Great! Could you also share your email so we can keep in touch?",
+  "Don't hold back. Tell us what you'd like to share!",
+];
+
+let stage = NAME; // flag that can be either NAME, EMAIL, MESSAGE, or SEND
+let option = NEXT; // flag that can be either NEXT or EDIT
+
+const send_btn = document.getElementById("cmid-send-btn");
+const submit_btn = document.getElementById("cmid-submit-btn");
+submit_btn.addEventListener("click", () => {
+  // get answer in textarea
+  let user_response = form_textarea.value.trim();
+
+  if (option === NEXT) {
+    // post user answer and site response and move to next stage if stage NOT SEND,
+    // else hide 'cmstl-textarea-wrapper' and 'cmid-submit-btn' and show 'cmid-send-btn'
+    // (also, add onclick event listener to user post)
+    // (also, add data attribute to user_message, data-answer-type)
+
+    if (stage === NAME || stage === EMAIL || stage === MESSAGE) {
+      // post user response
+      const user_message = document.createElement("div");
+      user_message.classList.add(
+        "cmstl-form-message-block",
+        "cmstl-message-transition-user",
+        "cmstl-form-answer"
+      );
+      user_message.setAttribute("data-answer-type", stage);
+      user_message.innerHTML = get_user_answer_html(user_response);
+      user_message.addEventListener("click", set_user_answer_to_edit);
+      setTimeout(() => {
+        messages_container.appendChild(user_message);
+      }, 100);
+      // run animation
+      setTimeout(() => {
+        user_message.classList.remove("cmstl-message-transition-user");
+      }, 150);
+      // post site response if stage = NAME | EMAIL
+      if (stage !== MESSAGE) {
+        const site_message = document.createElement("div");
+        site_message.classList.add(
+          "cmstl-form-message-block",
+          "cmstl-message-transition-site"
+        );
+        site_message.innerHTML = get_site_answer_html(site_responses[stage]);
+        setTimeout(() => {
+          messages_container.appendChild(site_message);
+        }, 600);
+        // run animation
+        setTimeout(() => {
+          site_message.classList.remove("cmstl-message-transition-site");
+        }, 650);
+      }
+      // move to next stage
+      stage = stage + 1;
+      // clear textarea
+      form_textarea.value = "";
+    }
+
+    if (stage === SEND) {
+      form_texarea_wrapper.classList.add("cmstl-hide");
+      submit_btn.classList.add("cmstl-hide");
+      send_btn.classList.remove("cmstl-hide");
+    }
+  } else {
+    // edit user answer, update 'option' to 'NEXT', and enable the rest of the messages
+    const elem_to_edit_selector = `[data-answer-type='${user_type_of_answer}']`;
+    const elem_to_edit_parent = messages_container.querySelector(
+      elem_to_edit_selector
+    );
+    elem_to_edit_parent.querySelector(".cmstl-form-message").textContent =
+      form_textarea.value.trim();
+    // update 'option'
+    option = NEXT;
+    // remove opacity all the messages
+    const elements = messages_container.querySelectorAll(
+      ".cmstl-form-message-block"
+    );
+    elements.forEach((elem) => {
+      elem.style.opacity = 1;
+    });
+    // clear textarea
+    form_textarea.value = "";
+  }
+});
+
+// ---- text edit event listener callback (sets the 'user_answer_to_edit' and changes 'option' to EDIT)
+
+const set_user_answer_to_edit = (e) => {
+  // clear textarea value if any
+  form_textarea.value = "";
+  // get type of answer
+  user_type_of_answer = e.target.getAttribute("data-answer-type");
+  // get answer and put it in textarea
+  user_answer_to_edit = e.target.querySelector(
+    ".cmstl-form-message"
+  ).textContent;
+  form_textarea.value = user_answer_to_edit.trim();
+  // reduce opacity on the rest of the elements except on clicked one
+  const elements = messages_container.querySelectorAll(
+    ".cmstl-form-message-block"
+  );
+  elements.forEach((elem) => {
+    elem.style.opacity = 0.2;
+  });
+  e.target.style.opacity = 1;
+  // change option to EDIT
+  option = EDIT;
+};
+
+// ---- send button event listener
+// NOTE: send_btn added to elements that close modal, below (modal section)
+
+// ---- reset function on closing form modal (call this in closeModal below)
+
+const reset_form_modal = () => {
+  // clear formModal (clear textarea, textarea place holder, hide send button,
+  // show textarea, show submit btn, reset opacity, reset 'option', reset 'stage')
+
+  // clear messages
+  const elements = messages_container.querySelectorAll(
+    ".cmstl-form-message-block"
+  );
+  // keep the first two
+  let count = 0;
+  for (elem of elements) {
+    if (count > 1) elem.remove();
+    else elem.style.opacity = 1; // reset opacity for first two elements
+
+    count = count + 1;
+  }
+
+  // clear 'option' and 'stage'
+  option = NEXT;
+  stage = NAME;
+
+  // clear textarea value and reset placeholder text
+  form_textarea.value = "";
+  form_textarea.setAttribute("placeholder", textarea_placeholders[1]);
+
+  // hide send button and show textarea and submit button
+  send_btn.classList.add("cmstl-hide");
+  form_texarea_wrapper.classList.remove("cmstl-hide");
+  submit_btn.classList.remove("cmstl-hide");
+};
+
+/**
+ *
  * ---- Modal Animation
  *
  *
@@ -528,9 +769,12 @@ const elements_that_close_modal_menu = [
 const elements_that_close_modal_form = [
   document.querySelector(".cmstl-form .cmstl-modal-close-btn"),
   document.querySelector(".cmstl-modal-form-wrapper"),
+  send_btn,
 ];
 
 // ---------------------------------------------------- Open and Close functions
+
+// remove cmstl-message-transition-site from second site message when opening modal (reset this on closing modal)
 
 const openModal = (e, open_elements, modal, expanding_div) => {
   if (open_elements.includes(e.target)) {
@@ -540,15 +784,14 @@ const openModal = (e, open_elements, modal, expanding_div) => {
 
     setTimeout(() => {
       modal.classList.remove("cmstl-hide");
-      // navbar.classList.add("cmstl-hide");
     }, 300);
   }
 };
 
 const closeModal = (e, close_elements, modal) => {
   if (close_elements.includes(e.target)) {
+    // hide modal
     modal.classList.add("cmstl-hide");
-    // navbar.classList.remove("cmstl-hide");
 
     body.style.overflow = "visible";
 
@@ -556,9 +799,11 @@ const closeModal = (e, close_elements, modal) => {
       let expanding_div = document.querySelector(
         ".cmstl-expanding-div-expanded"
       );
-      // console.log(expanding_div);
       expanding_div.classList.remove("cmstl-expanding-div-expanded");
     }, 50);
+
+    // reset form modal
+    reset_form_modal();
   }
 };
 
@@ -589,13 +834,6 @@ document.addEventListener("click", (e) => {
 document.addEventListener("click", (e) => {
   closeModal(e, elements_that_close_modal_form, modal_form);
 });
-
-/**
- *
- * ---- Form Logic
- *
- *
- */
 
 /**
  *
