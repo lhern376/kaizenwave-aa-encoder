@@ -834,6 +834,8 @@ h6 {
   height: 100%;
 
   background-size: 600px 600px;
+  /* background-size: 1280px 972px; */
+
   background-repeat: repeat;
   background-position: top calc(1% * (var(--parallax-scroll) / 2)) left;
 
@@ -841,18 +843,35 @@ h6 {
 }
 
 .cmstl-parallax.cmstl-hero-parallax {
-  background-image: url("media/background_hero_smaller.jpg");
+  /* background-image: url("media/background_hero_smaller.jpg"); */
+  background-image: url("media/background_no_repeat_9.jpg");
+
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top calc(1% * (var(--parallax-scroll) / 0.3)) left;
+  /* background-size: cover; */
+  /* background-position: top calc(1% * (var(--parallax-scroll) / 0.3)) left; */
+
+  background-size: 100% 150%;
+  background-position: bottom calc(1% * (var(--parallax-scroll) / 0.3)) left;
 }
 
 .cmstl-parallax.cmstl-what-we-do-parallax {
-  background-image: url("media/background_repeat_3.jpg");
+  /* background-image: url("media/background_repeat_3.jpg"); */
+  /* background-image: url("../encoder_media_candidates/background_repeat_6.jpg"); */
+
+  background-image: url("media/background_no_repeat_8.jpg");
+  background-repeat: no-repeat;
+  background-size: 150% 200%;
+  background-position: bottom calc(1% * (var(--parallax-scroll) / 1.5)) left;
 }
 
 .cmstl-parallax.cmstl-say-hello-parallax {
-  background-image: url("media/background_repeat_3.jpg");
+  /* background-image: url("media/background_repeat_3.jpg"); */
+  /* background-image: url("../encoder_media_candidates/background_repeat_6.jpg"); */
+
+  background-image: url("media/background_no_repeat_8.jpg");
+  background-repeat: no-repeat;
+  background-size: 150% 200%;
+  background-position: bottom calc(1% * (var(--parallax-scroll) / 1.5)) left;
 }
 
 /* mobile backgrounds END */

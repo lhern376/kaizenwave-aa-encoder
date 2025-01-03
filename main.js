@@ -633,6 +633,8 @@ submit_btn.addEventListener("click", () => {
       stage = stage + 1;
       // clear textarea
       form_textarea.value = "";
+      // set placeholder text
+      form_textarea.setAttribute("placeholder", textarea_placeholders[stage]);
     }
 
     if (stage === SEND) {
@@ -659,6 +661,8 @@ submit_btn.addEventListener("click", () => {
     });
     // clear textarea
     form_textarea.value = "";
+    // set placeholder text
+    form_textarea.setAttribute("placeholder", textarea_placeholders[stage]);
   }
 });
 
@@ -674,6 +678,11 @@ const set_user_answer_to_edit = (e) => {
     ".cmstl-form-message"
   ).textContent;
   form_textarea.value = user_answer_to_edit.trim();
+  // set placeholder text
+  form_textarea.setAttribute(
+    "placeholder",
+    textarea_placeholders[user_type_of_answer]
+  );
   // reduce opacity on the rest of the elements except on clicked one
   const elements = messages_container.querySelectorAll(
     ".cmstl-form-message-block"
