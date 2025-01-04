@@ -607,9 +607,9 @@ const site_responses = [
 let stage = NAME; // flag that can be either NAME, EMAIL, MESSAGE, or SEND
 let option = NEXT; // flag that can be either NEXT or EDIT
 
-const send_btn = document.getElementById("cmid-send-btn");
-const submit_btn = document.getElementById("cmid-submit-btn");
-submit_btn.addEventListener("click", () => {
+// callback
+
+const handleBtnSubmit = () => {
   // get answer in textarea
   let user_response = form_textarea.value.trim();
 
@@ -630,6 +630,7 @@ submit_btn.addEventListener("click", () => {
       user_message.setAttribute("data-answer-type", stage);
       user_message.innerHTML = get_user_answer_html(user_response);
       user_message.addEventListener("click", set_user_answer_to_edit);
+      user_message.addEventListener("touchend", set_user_answer_to_edit);
       setTimeout(() => {
         messages_container.appendChild(user_message);
       }, 100);
@@ -715,7 +716,12 @@ submit_btn.addEventListener("click", () => {
     // reset size
     form_textarea.classList.remove("cmstl-form-message-stage");
   }
-});
+};
+
+const send_btn = document.getElementById("cmid-send-btn");
+const submit_btn = document.getElementById("cmid-submit-btn");
+submit_btn.addEventListener("click", handleBtnSubmit);
+submit_btn.addEventListener("touchend", handleBtnSubmit);
 
 // ---- text edit event listener callback (sets the 'user_answer_to_edit' and changes 'option' to EDIT)
 
