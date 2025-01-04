@@ -498,7 +498,7 @@ const messages_container = document.getElementById(
 
 const form_textarea = document.getElementById("cmid-textarea");
 
-const form_texarea_wrapper = document.querySelector(".cmstl-textarea-wrapper");
+const form_textarea_wrapper = document.querySelector(".cmstl-textarea-wrapper");
 
 // ---- site_answer html structure
 
@@ -571,6 +571,7 @@ const textarea_placeholders = {
   1: "Type your name here",
   2: "Enter your email address here",
   3: "Your message goes here",
+  4: "4th message should never be seen by user",
 };
 
 // site responses
@@ -635,10 +636,12 @@ submit_btn.addEventListener("click", () => {
       form_textarea.value = "";
       // set placeholder text
       form_textarea.setAttribute("placeholder", textarea_placeholders[stage]);
+      // focus textarea
+      form_textarea.focus();
     }
 
     if (stage === SEND) {
-      form_texarea_wrapper.classList.add("cmstl-hide");
+      form_textarea_wrapper.classList.add("cmstl-hide");
       submit_btn.classList.add("cmstl-hide");
       send_btn.classList.remove("cmstl-hide");
     }
@@ -663,6 +666,24 @@ submit_btn.addEventListener("click", () => {
     form_textarea.value = "";
     // set placeholder text
     form_textarea.setAttribute("placeholder", textarea_placeholders[stage]);
+    // focus textarea
+    form_textarea.focus();
+
+    // hide textarea and submit_btn and show send_btn
+    // if stage === SEND
+    if (stage === SEND) {
+      form_textarea_wrapper.classList.add("cmstl-hide");
+      submit_btn.classList.add("cmstl-hide");
+      send_btn.classList.remove("cmstl-hide");
+    }
+  }
+
+  if (stage === MESSAGE) {
+    // increase textarea size
+    form_textarea.classList.add("cmstl-form-message-stage");
+  } else {
+    // reset size
+    form_textarea.classList.remove("cmstl-form-message-stage");
   }
 });
 
@@ -672,7 +693,8 @@ const set_user_answer_to_edit = (e) => {
   // clear textarea value if any
   form_textarea.value = "";
   // get type of answer
-  user_type_of_answer = e.target.getAttribute("data-answer-type");
+  user_type_of_answer = Number(e.target.getAttribute("data-answer-type"));
+
   // get answer and put it in textarea
   user_answer_to_edit = e.target.querySelector(
     ".cmstl-form-message"
@@ -683,6 +705,18 @@ const set_user_answer_to_edit = (e) => {
     "placeholder",
     textarea_placeholders[user_type_of_answer]
   );
+  // focus textarea
+  form_textarea.focus();
+
+  // if stage === MESSAGE, increase textarea size, otherwise reset it
+  if (user_type_of_answer === MESSAGE) {
+    // increase textarea size
+    form_textarea.classList.add("cmstl-form-message-stage");
+  } else {
+    // reset size
+    form_textarea.classList.remove("cmstl-form-message-stage");
+  }
+
   // reduce opacity on the rest of the elements except on clicked one
   const elements = messages_container.querySelectorAll(
     ".cmstl-form-message-block"
@@ -693,6 +727,10 @@ const set_user_answer_to_edit = (e) => {
   e.target.style.opacity = 1;
   // change option to EDIT
   option = EDIT;
+  // hide 'send_btn' and show textarea and submit_btn if necessary
+  send_btn.classList.add("cmstl-hide");
+  form_textarea_wrapper.classList.remove("cmstl-hide");
+  submit_btn.classList.remove("cmstl-hide");
 };
 
 // ---- send button event listener
@@ -725,9 +763,12 @@ const reset_form_modal = () => {
   form_textarea.value = "";
   form_textarea.setAttribute("placeholder", textarea_placeholders[1]);
 
+  // reset textarea size
+  form_textarea.classList.remove("cmstl-form-message-stage");
+
   // hide send button and show textarea and submit button
   send_btn.classList.add("cmstl-hide");
-  form_texarea_wrapper.classList.remove("cmstl-hide");
+  form_textarea_wrapper.classList.remove("cmstl-hide");
   submit_btn.classList.remove("cmstl-hide");
 };
 
