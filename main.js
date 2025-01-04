@@ -610,6 +610,10 @@ let option = NEXT; // flag that can be either NEXT or EDIT
 const send_btn = document.getElementById("cmid-send-btn");
 const submit_btn = document.getElementById("cmid-submit-btn");
 submit_btn.addEventListener("click", () => {
+  // disable submit_btn
+  submit_btn.disabled = true;
+  submit_btn.style.opacity = 0.2;
+
   // get answer in textarea
   let user_response = form_textarea.value.trim();
 
