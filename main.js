@@ -231,7 +231,7 @@ document.addEventListener("mouseover", (e) => {
 
 // ---------------------------------------------------- Motto Text
 
-const textFlicker = document.querySelector(".cmstl-text-flicker");
+const textFlickers = [...document.querySelectorAll(".cmstl-text-flicker")];
 
 setInterval(() => {
   // console.log("Motto flicker");
@@ -245,7 +245,10 @@ setInterval(() => {
 
   const filter = `drop-shadow(${baseColor} 0px 0px ${num1}px) drop-shadow(${siteColor} 0px 0px ${num2}px) drop-shadow(${siteColor} 0px 0px ${num3}px)`;
 
-  textFlicker.style.filter = filter;
+  // textFlicker.style.filter = filter;
+  textFlickers.forEach((elem) => {
+    elem.style.filter = filter;
+  });
 }, 100);
 
 /**
@@ -490,6 +493,23 @@ say_hello_arr.forEach((entry) => {
  *  - the elements here are used in the modal logic section (below section)
  */
 
+/* INDEX
+//
+// ---- get elements
+// ---- site_answer html structure
+// ---- user_answer html structure
+// ---- submit button event listener (4 stages: name, email, message, send)
+// submit options
+// stages
+// user answers
+// textarea placeholders
+// site responses
+// ---- text edit event listener callback (sets the 'user_answer_to_edit' and changes 'option' to EDIT)
+// ---- validate textarea
+// ---- send button event listener
+// ---- reset function on closing form modal (call this in closeModal below)
+*/
+
 // ---- get elements
 
 const messages_container = document.getElementById(
@@ -564,6 +584,9 @@ const NAME = 1;
 const EMAIL = 2;
 const MESSAGE = 3;
 const SEND = 4;
+
+// user answers (this is used to pass user answers to the actual wordpress form)
+const user_answers = { 1: "", 2: "", 3: "" };
 
 // textarea placeholders
 // - the keys coincide with 'stages'
@@ -640,6 +663,9 @@ submit_btn.addEventListener("click", () => {
       form_textarea.focus();
     }
 
+    // update user_answers
+    user_answers[stage - 1] = user_response;
+
     if (stage === SEND) {
       form_textarea_wrapper.classList.add("cmstl-hide");
       submit_btn.classList.add("cmstl-hide");
@@ -651,8 +677,12 @@ submit_btn.addEventListener("click", () => {
     const elem_to_edit_parent = messages_container.querySelector(
       elem_to_edit_selector
     );
+    // let user_answer = form_textarea.value.trim();
     elem_to_edit_parent.querySelector(".cmstl-form-message").textContent =
-      form_textarea.value.trim();
+      user_response;
+    // update user_answers
+    user_answers[user_type_of_answer] = user_response;
+
     // update 'option'
     option = NEXT;
     // remove opacity all the messages
@@ -733,8 +763,52 @@ const set_user_answer_to_edit = (e) => {
   submit_btn.classList.remove("cmstl-hide");
 };
 
+// ---- validate textarea
+
+form_textarea.addEventListener("keyup", () => {
+  if (
+    (option === NEXT && stage === EMAIL) ||
+    (option === EDIT && user_type_of_answer === EMAIL)
+  ) {
+    let text = form_textarea.value.trim();
+
+    let isValid = String(text)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+
+    if (isValid) {
+      submit_btn.disabled = false;
+      submit_btn.style.opacity = 1;
+    } else {
+      submit_btn.disabled = true;
+      submit_btn.style.opacity = 0.2;
+    }
+  } else {
+    if (form_textarea.value.length > 0 && form_textarea.value.trim() !== "") {
+      submit_btn.disabled = false;
+      submit_btn.style.opacity = 1;
+    } else {
+      submit_btn.disabled = true;
+      submit_btn.style.opacity = 0.2;
+    }
+  }
+});
+
 // ---- send button event listener
 // NOTE: send_btn added to elements that close modal, below (modal section)
+
+const thankyou_text = document.querySelector(".cmstl-form-send-thankyou");
+
+send_btn.addEventListener("click", () => {
+  console.log(user_answers);
+  thankyou_text.classList.add("cmstl-thankyou-anim");
+});
+
+thankyou_text.addEventListener("animationend", () => {
+  thankyou_text.classList.remove("cmstl-thankyou-anim");
+});
 
 // ---- reset function on closing form modal (call this in closeModal below)
 
@@ -765,6 +839,10 @@ const reset_form_modal = () => {
 
   // reset textarea size
   form_textarea.classList.remove("cmstl-form-message-stage");
+
+  // reset submit_btn opacity and disabled
+  submit_btn.disabled = true;
+  submit_btn.style.opacity = 0.2;
 
   // hide send button and show textarea and submit button
   send_btn.classList.add("cmstl-hide");

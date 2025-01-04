@@ -369,6 +369,47 @@ h6 {
 
 /* Form */
 
+.cmstl-form-send-thankyou {
+  padding: 1rem;
+  backdrop-filter: var(--cmstl-blur);
+  border-radius: 15%;
+
+  position: fixed;
+  top: 150%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 1200;
+}
+
+.cmstl-form-send-thankyou.cmstl-thankyou-anim {
+  animation-name: thankyou;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  /* animation-fill-mode: forwards; */
+  /* animation-play-state: paused; */
+}
+
+@keyframes thankyou {
+  0% {
+    top: 150%;
+    opacity: 0;
+  }
+  30% {
+    top: 30%;
+    opacity: 0.9;
+  }
+  50%,
+  70% {
+    top: 30%;
+    opacity: 1;
+  }
+  100% {
+    top: 150%;
+    opacity: 0;
+  }
+}
+
 .cmstl-modal-form-wrapper {
   position: absolute;
   inset: 0;

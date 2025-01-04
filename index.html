@@ -103,6 +103,10 @@
     </div>
     <!-- Menu Modal END -->
     <!-- Form Modal -->
+    <!-- thank you message -->
+    <div class="cmstl-form-send-thankyou cmstl-fw-lg cmstl-text-flicker">
+      Thank you!
+    </div>
     <div id="cmid-expanding-div-form" class="cmstl-expanding-div"></div>
     <div class="cmstl-modal-menu cmstl-form cmstl-hide">
       <div class="cmstl-modal-form-wrapper">
@@ -187,12 +191,15 @@
                 id="cmid-textarea"
                 class="cmstl-fw-normal"
                 placeholder="Type your name here"
+                maxlength="2000"
               ></textarea>
             </div>
             <button
               id="cmid-submit-btn"
               class="cmstl-submit-button cmstl-contact"
               tabindex="0"
+              disabled="true"
+              style="opacity: 0.2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
