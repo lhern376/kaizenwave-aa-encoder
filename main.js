@@ -222,10 +222,18 @@ document.addEventListener("mouseover", (e) => {
       e.target.style.boxShadow = boxShadow;
     }, 30); // Interval time in milliseconds (adjust as needed)
 
-    e.target.addEventListener("mouseout", () => {
-      clearInterval(intervalId);
-      e.target.style.boxShadow = "rgb(255, 255, 255) 0px 0px 0px"; // Reset to original
-    });
+    // e.target.addEventListener("mouseout", () => {
+    //   clearInterval(intervalId);
+    //   e.target.style.boxShadow = "rgb(255, 255, 255) 0px 0px 0px"; // Reset to original
+    // });
+  }
+});
+
+document.addEventListener("mouseout", (e) => {
+  let isContact = e.target.classList.contains("cmstl-contact");
+  if (isContact && intervalId) {
+    clearInterval(intervalId);
+    e.target.style.boxShadow = "rgb(255, 255, 255) 0px 0px 0px"; // Reset to original
   }
 });
 
@@ -750,6 +758,10 @@ const set_user_answer_to_edit = (e) => {
     // reset size
     form_textarea.classList.remove("cmstl-form-message-stage");
   }
+
+  // enable submit button
+  submit_btn.disabled = false;
+  submit_btn.style.opacity = 1;
 
   // reduce opacity on the rest of the elements except on clicked one
   const elements = messages_container.querySelectorAll(
